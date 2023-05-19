@@ -1,0 +1,89 @@
+SQL> CREATE TABLE STUDENT_21051948(Roll NUMBER(3), Name VARCHAR2(10), City VARCHAR(15), Age NUMBER(2), CGPA NUMBER(4,2));
+CREATE TABLE STUDENT_21051948(Roll NUMBER(3), Name VARCHAR2(10), City VARCHAR(15), Age NUMBER(2), CGPA NUMBER(4,2))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DESC TABLE STUDENT_21051948;
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> DROP TABLE STUDENT_21051948;
+
+Table dropped.
+
+SQL> CREATE TABLE STUDENT_21051948(Roll NUMBER(3), Name VARCHAR2(10), City VARCHAR(15), Age NUMBER(2), CGPA NUMBER(4,2));
+
+Table created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(101, 'Ram', 'Bhubaneswar', 19, 6.44);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(102, 'Hari', 'Jharkhand', 20, 10);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(103, 'Uday', 'Bhubaneswar', 19, 9.9);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(104, 'Vikas', 'Uttar Pradesh', 20, 3.56);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(105, 'Sweta', 'Rajasthan', 19, 6);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(106, 'Arnav', 'Delhi', 20, 5.67);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(107, 'Swadhin', 'Cuttack', 19, 8.6);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(108, 'Yogesh', 'Kolkata', 19, 7.08);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(109, 'Smriti', 'Chennai', 20, 6.97);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_21051948 VALUES(110, 'Manish', 'Ranchi', 20, 5.28);
+
+1 row created.
+
+SQL> SELECT *from TABLE STUDENT_21051948;
+SELECT *from TABLE STUDENT_21051948
+                   *
+ERROR at line 1:
+ORA-00906: missing left parenthesis 
+
+
+SQL> SELECT * from TABLE STUDENT_21051948;
+SELECT * from TABLE STUDENT_21051948
+                    *
+ERROR at line 1:
+ORA-00906: missing left parenthesis 
+
+
+SQL> SELECT * from STUDENT_21051948;
+
+      ROLL NAME       CITY                   AGE       CGPA                     
+---------- ---------- --------------- ---------- ----------                     
+       101 Ram        Bhubaneswar             19       6.44                     
+       102 Hari       Jharkhand               20         10                     
+       103 Uday       Bhubaneswar             19        9.9                     
+       104 Vikas      Uttar Pradesh           20       3.56                     
+       105 Sweta      Rajasthan               19          6                     
+       106 Arnav      Delhi                   20       5.67                     
+       107 Swadhin    Cuttack                 19        8.6                     
+       108 Yogesh     Kolkata                 19       7.08                     
+       109 Smriti     Chennai                 20       6.97                     
+       110 Manish     Ranchi                  20       5.28                     
+
+10 rows selected.
+
+SQL> spool off;

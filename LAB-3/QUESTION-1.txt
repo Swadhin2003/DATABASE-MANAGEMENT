@@ -1,0 +1,95 @@
+SQL> SELECT Lname||', '||Fname AS NAME,Salary from EMPLOYEE;
+
+NAME                 SALARY                                                     
+---------------- ----------                                                     
+NAGAR, ASHU          450000                                                     
+DAS, RAJ             350000                                                     
+ROY, PIYA            275000                                                     
+ALI, JIYA            475000                                                     
+MURTHY, RANGA        950000                                                     
+
+SQL> SELECT * from EMPLOYEE where Commission=0;
+
+no rows selected
+
+SQL> SELECT DISTINCT Building from LOCATION;
+
+BUILDING                                                                        
+----------                                                                      
+B-1                                                                             
+B-2                                                                             
+	
+SQL> SELECT * from CRSSECTION where Section=5;
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          5 5                50         15 Monday     15:00:00        
+18:00:00           15         35                                                
+                                                                                
+SQL> SELECT Name from FACULTY where DeptId IN (301,302);
+
+NAME                                                                            
+------                                                                          
+ASHU                                                                            
+RAJ                                                                             
+                                                                              
+SQL> SELECT * from STUDENT where City IN ('ANGUL','PURI');
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE   FACULTYID    MAJORID PHONE                                          
+---------- ---------- ---------- ----------                                     
+       102 DAS    RAJ      BOSE COLONY    ANGUL    ODISHA   756001 START2       
+21/03/2002        202        302 8987896324                                     
+                                                                                
+       105 MURTHY RANGA    PATEL MARG     PURI     ODISHA   752001 START5       
+14/11/2003        205        305 8798723895                                     
+                                                                                                                                              
+SQL> SELECT EmployeeId,Salary+(0.01*Salary) as UPDATED_SALARY from EMPLOYEE where EmployeeId=101;
+
+EMPLOYEEID UPDATED_SALARY                                                       
+---------- --------------                                                       
+       101         495000                                                       
+
+SQL> Department number 30 is not present.
+
+SQL> SELECT CourseId, MaxCount from CRSSECTION order by MaxCount DESC;
+
+  COURSEID   MAXCOUNT                                                           
+---------- ----------                                                           
+         1         35                                                           
+         2         35                                                           
+         5         35                                                           
+         4         35                                                           
+         3         35                                                           
+
+SQL> INSERT into TERM values (106, 206, '14/01/2023', '28/01/2023');
+
+1 row created.
+
+SQL> ACCEPT DeptId PROMPT 'Please enter DeptId:'
+Please enter DeptId:67
+                                  
+SQL> SELECT * from COURSE where PreReq='NULL';
+
+no rows selected
+
+SQL> SELECT * from FACULTY ORDER BY DeptId DESC, Name;
+
+ FACULTYID NAME       ROOMID PHONE          DEPTID                              
+---------- ------ ---------- ---------- ----------                              
+       105 RANGA         109 8798723895        305                              
+       104 JIYA          108 7658769934        304                              
+       103 PIYA          107 6754367954        303                              
+       102 RAJ           106 8987896324        302                              
+       101 ASHU          105 7978564789        301                              
+
+SQL> SELECT Name from FACULTY where Name LIKE 'C%';
+
+no rows selected
+
+SQL> SELECT STARTTERM from STUDENT where STARTTERM LIKE '%03';
+
+no rows selected

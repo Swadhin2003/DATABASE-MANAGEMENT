@@ -1,0 +1,20 @@
+SQL> CREATE table STUDENTS(StudentId NUMBER(6), StudentName VARCHAR(14), Gender VARCHAR(7), DOB VARCHAR(10));
+
+Table created.
+
+SQL> INSERT into STUDENTS values(101,'SWADHIN','MALE','27-08-2003');
+
+1 row created.
+
+SQL> INSERT into STUDENTS values(102,'ARIN','MALE','28-03-2003');
+
+1 row created.
+
+SQL> SELECT * from STUDENTS;
+
+ STUDENTID STUDENTNAME  GENDER  DOB                                               
+---------- ------------ ------- -------                                        
+       101 SWADHIN      MALE    27-08-2003                                        
+       102 ARIN         MALE    28-03-2003                                        
+
+SQL> spool off;

@@ -1,0 +1,221 @@
+SQL> CREATE table EMPLOYEE (EmployeeId NUMBER(3) CONSTRAINT C30 PRIMARY KEY, Lname VARCHAR(6), Fname VARCHAR(8), PositionId NUMBER(3), Supervisor VARCHAR(10), HireDate DATE, Salary NUMBER(8), Commission NUMBER(4), DeptId NUMBER(3), QualId NUMBER(3));
+
+Table created.
+
+SQL> INSERT into EMPLOYEE values (101, 'NAGAR', 'ASHU', 201, 'ABC', '23 JANUARY 2007', 450000, 1200, 301, 401);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE values (102, 'DAS', 'RAJ', 202, 'XYZ', '01 SEPTEMBER 2004', 350000, 9999, 302, 402);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE values (103, 'ROY', 'PIYA', 203, 'PRT', '17 AUGUST 2005', 275000, 6000, 303, 403);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE values (104, 'ALI', 'JIYA', 204, 'CDE', '14 FEBRUARY 2000', 475000, 7000, 304, 404);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE values (105, 'MURTHY', 'RANGA', 205, 'JKL', '19 JUNE 2010', 950000, 9000, 305, 405);
+
+1 row created.
+
+SQL> SELECT * from EMPLOYEE;
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID
+---------- ----------
+       101 NAGAR  ASHU            201 ABC        23-JAN-07     450000       1200
+       301        401
+
+       102 DAS    RAJ             202 XYZ        01-SEP-04     350000       9999
+       302        402
+
+       103 ROY    PIYA            203 PRT        17-AUG-05     275000       6000
+       303        403
+
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID
+---------- ----------
+       104 ALI    JIYA            204 CDE        14-FEB-00     475000       7000
+       304        404
+
+       105 MURTHY RANGA           205 JKL        19-JUN-10     950000       9000
+       305        405                                    
+
+SQL> CREATE table POSITION (PositionId NUMBER(3) CONSTRAINT C31 PRIMARY KEY, PosDesc NUMBER(3));
+
+Table created.
+
+SQL> INSERT into POSITION values (101, 201);
+
+1 row created.
+
+SQL> INSERT into POSITION values (102, 202);
+
+1 row created.
+
+SQL> INSERT into POSITION values (103, 203);
+
+1 row created.
+
+SQL> INSERT into POSITION values (104, 204);
+
+1 row created.
+
+SQL> INSERT into POSITION values (105, 205);
+
+1 row created.
+
+SQL> SELECT * from POSITION;
+
+POSITIONID    POSDESC                                                           
+---------- ----------                                                           
+       101        201                                                           
+       102        202                                                           
+       103        203                                                           
+       104        204                                                           
+       105        205                                                           
+
+SQL> CREATE table DEPT (EmployeeID number(3) CONSTRAINT C32 PRIMARY KEY, DeptName VARCHAR2(10), Location VARCHAR2(10), DeptID NUMBER(3));
+
+Table created.
+
+SQL> INSERT into DEPT values (101, 'SALES', 'LA', 301);
+
+1 row created.
+
+SQL> INSERT into DEPT values (102, 'RD', 'LV', 302);
+
+1 row created.
+
+SQL> INSERT into DEPT values (103, 'WELFARE', 'NK', 303);
+
+1 row created.
+
+SQL> INSERT into DEPT values (104, 'INFO', 'NJ', 304);
+
+1 row created.
+
+SQL> INSERT into DEPT values (105, 'DEALS', 'TN', 305);
+
+1 row created.
+
+SQL> SELECT * from DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION   DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 SALES      LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+
+SQL> CREATE table QUALIFICATION (QualId NUMBER(3) CONSTRAINT C33 PRIMARY KEY, QualDesc NUMBER(3));
+
+Table created.
+
+SQL> INSERT into QUALIFICATION values (101, 401);
+
+1 row created.
+
+SQL> INSERT into QUALIFICATION values (102, 402);
+
+1 row created.
+
+SQL> INSERT into QUALIFICATION values (103, 403);
+
+1 row created.
+
+SQL> INSERT into QUALIFICATION values (104, 404);
+
+1 row created.
+
+SQL> INSERT into QUALIFICATION values (105, 405);
+
+1 row created.
+
+SQL> SELECT * from QUALIFICATION;
+
+    QUALID   QUALDESC
+---------- ----------
+       101        401
+       102        402
+       103        403
+       104        404
+       105        405
+
+SQL> CREATE table EMPLEVEL (LevelNo NUMBER(3) CONSTRAINT C34 PRIMARY KEY, LowSalary NUMBER(6), HighSalary NUMBER(6));
+
+Table created.
+
+SQL> INSERT into EMPLEVEL values (101, 400000, 900000);
+
+1 row created.
+
+SQL> INSERT into EMPLEVEL values (102, 300000, 950000);
+
+1 row created.
+
+SQL> INSERT into EMPLEVEL values (103, 200000, 850000);
+
+1 row created.
+
+SQL> INSERT into EMPLEVEL values (104, 375000, 750000);
+
+1 row created.
+
+SQL> INSERT into EMPLEVEL values (105, 400000, 600000);
+
+1 row created.
+
+SQL> SELECT * from EMPLEVEL;
+
+   LEVELNO  LOWSALARY HIGHSALARY                                                
+---------- ---------- ----------                                                
+       101     400000     900000                                                
+       102     300000     950000                                                
+       103     200000     850000                                                
+       104     375000     750000                                                
+       105     400000     600000                                                
+ 
+SQL> CREATE table DEPENDENT (EmployeeId NUMBER(3) CONSTRAINT C35 PRIMARY KEY, DependentId NUMBER(3), DepDOB VARCHAR(10), Relation VARCHAR2(10));
+
+Table created.
+
+SQL> INSERT into DEPENDENT values (101, 401, '23-01-2007', 'STAFF');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (102, 301, '01-09-2004', 'DESIGNER');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (103, 201, '19-06-2010', 'STAFF');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (104, 101, '14-02-2000', 'MANAGER');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (105, 001, '27-04-2005', 'WORKER');
+
+1 row created.
+
+SQL> SELECT * from DEPENDENT;
+
+EMPLOYEEID DEPENDENTID DEPDOB     RELATION                                      
+---------- ----------- ---------- ----------                                    
+       101         401 23-01-2007 STAFF                                         
+       102         301 01-09-2004 DESIGNER                                      
+       103         201 19-06-2010 STAFF                                         
+       104         101 14-02-2000 MANAGER                                       
+       105           1 27-04-2005 WORKER                                        
+
+SQL> spool off;

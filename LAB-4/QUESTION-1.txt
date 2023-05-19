@@ -1,0 +1,169 @@
+SQL> SELECT INITCAP(FNAME||', '||LNAME) AS NAME, 'Rs.'||SALARY AS SALARY from EMPLOYEE;
+
+NAME             SALARY                                                         
+---------------- -------------------------------------------                    
+Ashu, Nagar      Rs.450000                                                      
+Raj, Das         Rs.350000                                                      
+Piya, Roy        Rs.275000                                                      
+Jiya, Ali        Rs.475000                                                      
+Ranga, Murthy    Rs.950000                                                      
+
+SQL> INSERT into EMPLOYEE values(106,'RUNGTA','SHELLY',206,'FGH','15 JULY 2002',750000,NULL,306,406);
+
+1 row created.
+
+SQL> SELECT EMPLOYEEID,NVL(COMMISSION,0) from EMPLOYEE;
+
+EMPLOYEEID NVL(COMMISSION,0)                                                    
+---------- -----------------                                                    
+       101              1200                                                    
+       102              9999                                                    
+       103              6000                                                    
+       104              7000                                                    
+       105              9000                                                    
+       106                 0                                                    
+
+6 rows selected.
+
+SQL> SELECT COUNT(ROOMID) from LOCATION;
+
+COUNT(ROOMID)                                                                   
+-------------                                                                   
+            5                                                                   
+
+SQL> SELECT COUNT(DISTINCT BUILDING) from LOCATION;
+
+COUNT(DISTINCTBUILDING)                                                         
+-----------------------                                                         
+                      2  
+
+SQL> SELECT FIRST, LAST, TO_CHAR(BIRTHDATE, 'DD MONTH YYYY') AS BIRTHDATE from STUDENT;
+
+FIRST    LAST   BIRTHDATE                                                       
+-------- ------ --------------------------------------------                    
+ASHU     NAGAR  20 MARCH     2003                                               
+RAJ      DAS    21 MARCH     2002                                               
+PIYA     ROY    08 SEPTEMBER 2002                                               
+JIYA     ALI    07 FEBRUARY  2002                                               
+RANGA    MURTHY 14 NOVEMBER  2002  
+
+SQL> SELECT AVG(TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTHDATE,'YYYY')) from STUDENT;
+
+AVG(TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTHDATE,'YYYY'))                          
+------------------------------------------------------                          
+                                                  20.8                          
+
+SQL> SELECT MIN(TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTHDATE,'YYYY')) from STUDENT;
+
+MIN(TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTHDATE,'YYYY'))                          
+------------------------------------------------------                          
+                                                    20                          
+
+SQL> SELECT MAX(TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTHDATE,'YYYY')) from STUDENT;
+
+MAX(TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTHDATE,'YYYY'))                          
+------------------------------------------------------                          
+                                                    21 
+
+SQL> SELECT DEPENDENTID, COUNT(*) AS TOTAL from DEPENDENT GROUP BY DEPENDENTID;
+
+no rows selected
+
+SQL> SELECT EMPLOYEEID, EXTRACT(YEAR from HIREDATE) AS HIREYEAR from EMPLOYEE;
+
+EMPLOYEEID   HIREYEAR                                                           
+---------- ----------                                                           
+       101       2007                                                           
+       102       2004                                                           
+       103       2005                                                           
+       104       2000                                                           
+       105       2010                                                           
+
+SQL> SELECT AVG(COMMISSION) from EMPLOYEE;
+
+AVG(COMMISSION)                                                                 
+---------------                                                                 
+         6639.8                                                                 
+
+SQL> SELECT COUNT(*) from EMPLOYEE;
+
+  COUNT(*)
+----------
+         5
+
+SQL> SELECT COUNT(COMMISSION) from EMPLOYEE;
+
+COUNT(COMMISSION)
+-----------------
+                5
+
+SQL> SELECT CSID, SUM(MAXCOUNT) AS TOTAL from CRSSECTION GROUP BY CSID;
+
+      CSID      TOTAL
+---------- ----------
+        12        175
+
+SQL> SELECT POWER(2,10) from DUAL;
+
+POWER(2,10)                                                                     
+-----------                                                                     
+       1024                                                                     
+
+SQL> SELECT COURSEID, NVL2(PREREQ,'ONE','NONE') from COURSE;
+
+  COURSEID NVL2                                                                 
+---------- ----                                                                 
+       101 ONE                                                                  
+       102 ONE                                                                  
+       103 ONE                                                                  
+       104 ONE                                                                  
+       105 ONE                                                                  
+
+SQL> SELECT COUNT(FACULTYID) from FACULTY GROUP BY DEPTID;
+
+COUNT(FACULTYID)                                                                
+----------------                                                                
+               1                                                                
+               1                                                                
+               1                                                                
+               1                                                                
+               1       
+
+SQL> SELECT DEPTID, AVG(SALARY) AS AVERAGE_SALARY from EMPLOYEE GROUP BY DEPTID having AVG(SALARY)>=75000;
+
+    DEPTID AVERAGE_SALARY
+---------- --------------
+       303         275000
+       301         450000
+       304         475000
+       302         350000
+       305         950000
+
+SQL> SELECT FNAME||' '||LNAME AS NAME, ROUND(MONTHS_BETWEEN(SYSDATE, HIREDATE)/12) AS YEARS_WORKED from EMPLOYEE;
+
+NAME            YEARS_WORKED
+--------------- ------------
+ASHU NAGAR                16
+RAJ DAS                   18
+PIYA ROY                  18
+JIYA ALI                  23
+RANGA MURTHY              13
+
+SQL> SELECT * from STUDENT where BIRTHDATE LIKE '%MAY%';
+
+no rows selected
+
+SQL> SELECT LNAME, FNAME, NVL(SALARY+COMMISSION, SALARY) from EMPLOYEE;
+
+LNAME  FNAME    NVL(SALARY+COMMISSION,SALARY)
+------ -------- -----------------------------
+NAGAR  ASHU                            451200
+DAS    RAJ                             359999
+ROY    PIYA                            281000
+ALI    JIYA                            482000
+MURTHY RANGA                           959000
+
+SQL>20 TO BE DONE;                                                  
+
+   
+

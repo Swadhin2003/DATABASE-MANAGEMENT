@@ -1,0 +1,291 @@
+SQL> DESC STUDENT_1948;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                               NUMBER(3)
+ NAMES                                              VARCHAR2(10)
+ CITY                                               VARCHAR2(15)
+ AGE                                                NUMBER(6)
+ CGPA                                               NUMBER(4,2)
+ BRANCH                                             VARCHAR2(7)
+
+SQL> RENAME STUDENT_1948 TO STUD_1948;
+
+Table renamed.
+
+SQL> DESC STUDENT_21051948;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                               NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ CITY                                               VARCHAR2(15)
+ AGE                                                NUMBER(2)
+ CGPA                                               NUMBER(4,2)
+
+SQL> SELECT * from STUDENT_1948;
+SELECT * from STUDENT_1948
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT * from STUD_1948;
+
+      ROLL NAMES      CITY                   AGE       CGPA BRANCH              
+---------- ---------- --------------- ---------- ---------- -------             
+       101 Ram        Bhubaneswar             19       6.44                     
+       102 Hari       Jharkhand               20         10                     
+       103 Uday       Bhubaneswar             19        9.9                     
+       104 Vikas      Uttar Pradesh           20          8                     
+       105 Sweta      Rajasthan               19          6                     
+       106 Arnav      Delhi                   20       5.67                     
+       107 Swadhin    Cuttack                 19        8.6                     
+       108 Yogesh     Kolkata                 19       7.08                     
+       109 Smriti     Chennai                 20       6.97                     
+       110 Manish     Ranchi                  20       5.28                     
+
+10 rows selected.
+
+SQL> DELETE from STUD_1948 where ROLL=110;
+
+1 row deleted.
+
+SQL> SELECT * from STUD_1948;
+
+      ROLL NAMES      CITY                   AGE       CGPA BRANCH              
+---------- ---------- --------------- ---------- ---------- -------             
+       101 Ram        Bhubaneswar             19       6.44                     
+       102 Hari       Jharkhand               20         10                     
+       103 Uday       Bhubaneswar             19        9.9                     
+       104 Vikas      Uttar Pradesh           20          8                     
+       105 Sweta      Rajasthan               19          6                     
+       106 Arnav      Delhi                   20       5.67                     
+       107 Swadhin    Cuttack                 19        8.6                     
+       108 Yogesh     Kolkata                 19       7.08                     
+       109 Smriti     Chennai                 20       6.97                     
+
+9 rows selected.
+
+SQL> CREATE TABLE KIIT(ROLL,AGE) as SELECT (ROLL,AGE from STUD_1948);
+CREATE TABLE KIIT(ROLL,AGE) as SELECT (ROLL,AGE from STUD_1948)
+                                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE KIIT(ROLL,AGE) as SELECT ROLL,AGE from STUD_1948;
+
+Table created.
+
+SQL> SELECT * from KIIT;
+
+      ROLL        AGE                                                           
+---------- ----------                                                           
+       101         19                                                           
+       102         20                                                           
+       103         19                                                           
+       104         20                                                           
+       105         19                                                           
+       106         20                                                           
+       107         19                                                           
+       108         19                                                           
+       109         20                                                           
+
+9 rows selected.
+
+SQL> INSERT into KIIT ROLL,AGE from STUD_1948 where ROLL=101;
+INSERT into KIIT ROLL,AGE from STUD_1948 where ROLL=101
+                     *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> INSERT into KIIT SELECT ROLL,AGE from STUD_1948 where ROLL=101;
+
+1 row created.
+
+SQL> SELECT * from KIIT;
+
+      ROLL        AGE                                                           
+---------- ----------                                                           
+       101         19                                                           
+       102         20                                                           
+       103         19                                                           
+       104         20                                                           
+       105         19                                                           
+       106         20                                                           
+       107         19                                                           
+       108         19                                                           
+       109         20                                                           
+       101         19                                                           
+
+10 rows selected.
+
+SQL> INSERT into KIIT values(101,21);
+
+1 row created.
+
+SQL> SELECT * from KIIT;
+
+      ROLL        AGE                                                           
+---------- ----------                                                           
+       101         19                                                           
+       102         20                                                           
+       103         19                                                           
+       104         20                                                           
+       105         19                                                           
+       106         20                                                           
+       107         19                                                           
+       108         19                                                           
+       109         20                                                           
+       101         19                                                           
+       101         21                                                           
+
+11 rows selected.
+
+SQL> SELECT ROWID, ROLL from KIIT;
+
+ROWID                    ROLL                                                   
+------------------ ----------                                                   
+AAADXyAABAAAKciAAA        101                                                   
+AAADXyAABAAAKciAAB        102                                                   
+AAADXyAABAAAKciAAC        103                                                   
+AAADXyAABAAAKciAAD        104                                                   
+AAADXyAABAAAKciAAE        105                                                   
+AAADXyAABAAAKciAAF        106                                                   
+AAADXyAABAAAKciAAG        107                                                   
+AAADXyAABAAAKciAAH        108                                                   
+AAADXyAABAAAKciAAI        109                                                   
+AAADXyAABAAAKcjAAA        101                                                   
+AAADXyAABAAAKcjAAB        101                                                   
+
+11 rows selected.
+
+SQL> DELETE from KIIT where ROWID=AAADXyAABAAAKcjAAB;
+DELETE from KIIT where ROWID=AAADXyAABAAAKcjAAB
+                             *
+ERROR at line 1:
+ORA-00904: "AAADXYAABAAAKCJAAB": invalid identifier 
+
+
+SQL> DELETE from KIIT where ROWID='AAADXyAABAAAKcjAAB';
+
+1 row deleted.
+
+SQL> DELETE from KIIT where ROWID='AAADXyAABAAAKcjAAA';
+
+1 row deleted.
+
+SQL> SELECT * from KIIT;
+
+      ROLL        AGE                                                           
+---------- ----------                                                           
+       101         19                                                           
+       102         20                                                           
+       103         19                                                           
+       104         20                                                           
+       105         19                                                           
+       106         20                                                           
+       107         19                                                           
+       108         19                                                           
+       109         20                                                           
+
+9 rows selected.
+
+SQL> 
+SQL> SELECT * from STUDENT_21051948;
+
+      ROLL NAME       CITY                   AGE       CGPA                     
+---------- ---------- --------------- ---------- ----------                     
+       101 Ram        Bhubaneswar             19       6.44                     
+       102 Hari       Jharkhand               20         10                     
+       103 Uday       Bhubaneswar             19        9.9                     
+       104 Vikas      Uttar Pradesh           20       3.56                     
+       105 Sweta      Rajasthan               19          6                     
+       106 Arnav      Delhi                   20       5.67                     
+       107 Swadhin    Cuttack                 19        8.6                     
+       108 Yogesh     Kolkata                 19       7.08                     
+       109 Smriti     Chennai                 20       6.97                     
+       110 Manish     Ranchi                  20       5.28                     
+
+10 rows selected.
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C1 PRIMARY KEY(ROLL);
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C2 UNIQUE(NAME);
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOT NULL(CITY);
+ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOT NULL(CITY)
+                                               *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOTNULL(CITY);
+ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOTNULL(CITY)
+                                                      *
+ERROR at line 1:
+ORA-00902: invalid datatype 
+
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NN(CITY);
+ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NN(CITY)
+                                                 *
+ERROR at line 1:
+ORA-00902: invalid datatype 
+
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOTNULL(CGPA);
+ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOTNULL(CGPA)
+                                                      *
+ERROR at line 1:
+ORA-00902: invalid datatype 
+
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOTNULL('CITY');
+ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOTNULL('CITY')
+                                                      *
+ERROR at line 1:
+ORA-00902: invalid datatype 
+
+
+SQL> ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOT NULL('CITY');
+ALTER TABLE STUDENT_21051948 ADD CONSTRAINT C3 NOT NULL('CITY')
+                                               *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> ALTER TABLE STUDENT_21051948 MODIFY(CITY VARCHAR2(15) CONSTRAINT C3 NOTNULL);
+ALTER TABLE STUDENT_21051948 MODIFY(CITY VARCHAR2(15) CONSTRAINT C3 NOTNULL)
+                                                      *
+ERROR at line 1:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ALTER TABLE STUDENT_21051948 MODIFY(CITY VARCHAR2(15) CONSTRAINT C3 NOT NULL);
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_21051948 MODIFY(CGPA NUMBER(4,2) CONSTRAINT C4 NOT NULL);
+
+Table altered.
+
+SQL> DESC STUDENT_1948;
+ERROR:
+ORA-04043: object STUDENT_1948 does not exist 
+
+
+SQL> DESC STUDENT_21051948;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                      NOT NULL NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ CITY                                      NOT NULL VARCHAR2(15)
+ AGE                                                NUMBER(2)
+ CGPA                                      NOT NULL NUMBER(4,2)
+
+SQL> spool OFF;

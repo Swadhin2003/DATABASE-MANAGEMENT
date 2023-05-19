@@ -1,0 +1,152 @@
+1.
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  area NUMBER(6, 2) ;
+  3  radius NUMBER := 3;
+  4  pi CONSTANT NUMBER := 3.14;
+  5  BEGIN
+  6  area := pi * radius * radius;
+  7  dbms_output.Put_line('Area of the circle = ' || area);
+  8  END;
+  9  /
+Area of the circle = 28.26                                                      
+
+PL/SQL procedure successfully completed.
+
+2.
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  no number;
+  3  result number;
+  4  BEGIN
+  5  no := &no;
+  6  dbms_output.put_line('Square of number is ' || (no * no) );result := 1;
+  7  result := no * no * no;
+  8  dbms_output.put_line('Cube of number is ' || result );
+  9  result := 1;
+ 10  result := no * 2;
+ 11  dbms_output.put_line('Double of number is ' || result );
+ 12  END;
+ 13  /
+Enter value for no: 12
+old   5: no := &no;
+new   5: no := 12;
+Square of number is 144                                                         
+Cube of number is 1728                                                          
+Double of number is 24                                                          
+
+PL/SQL procedure successfully completed.
+
+3.
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  a number(5);
+  3  b number(5);
+  4  temp number(5);
+  5  BEGIN
+  6  a:=&a;
+  7  b:=&b;
+  8  DBMS_output.put_line('a = ' || a);
+  9  DBMS_output.put_line('b = ' || b);
+ 10  temp:=a;
+ 11  a:=b;
+ 12  b:=temp;
+ 13  DBMS_output.put_line('After Swapping');
+ 14  DBMS_output.put_line('a = ' || a);
+ 15  DBMS_output.put_line('b = ' || b);
+ 16  END;
+ 17  /
+Enter value for a: 4
+old   6: a:=&a;
+new   6: a:=4;
+Enter value for b: 6
+old   7: b:=&b;
+new   7: b:=6;
+a = 4                                                                           
+b = 6                                                                           
+After Swapping                                                                  
+a = 6                                                                           
+b = 4                                                                           
+
+PL/SQL procedure successfully completed.
+
+4.
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  hours float(5);
+  3  rate float(5);
+  4  grosspay float(8);
+  5  netpay number(8,2);
+  6  BEGIN
+  7  dbms_output.put_line('Enter the no of hours worked');
+  8  hours:=&hours;
+  9  dbms_output.put_line('Enter the pay rate of one hour');rate:=&rate;
+ 10  grosspay:=hours*rate;
+ 11  netpay:=grosspay*(0.72);
+ 12  dbms_output.put_line('Grosspay = ' || grosspay);
+ 13  dbms_output.put_line('Netpay = ' || netpay);
+ 14  END;
+ 15  /
+Enter value for hours: 4
+old   8: hours:=&hours;
+new   8: hours:=4;
+Enter value for rate: 46
+old   9: dbms_output.put_line('Enter the pay rate of one hour');rate:=&rate;
+new   9: dbms_output.put_line('Enter the pay rate of one hour');rate:=46;
+Enter the no of hours worked                                                    
+Enter the pay rate of one hour                                                  
+Grosspay = 184                                                                  
+Netpay = 132.48                                                                 
+
+PL/SQL procedure successfully completed.
+
+5.
+SQL> SET SERVERPOINT ON;
+SP2-0735: unknown SET option beginning "SERVERPOIN..."
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2    v_hours NUMBER;
+  3    v_rate  NUMBER;
+  4    v_gross_pay NUMBER;
+  5    v_tax_rate NUMBER := 0.28; -- 28% tax rate
+  6    v_net_pay  NUMBER;
+  7  BEGIN
+  8    -- Input hours and rate
+  9    v_hours := &Enter_Hours;
+ 10    v_rate := &Enter_Rate;
+ 11    -- Calculate gross pay
+ 12    v_gross_pay := v_hours * v_rate;
+ 13    -- Calculate net pay after taxes
+ 14    v_net_pay := v_gross_pay * (1 - v_tax_rate);
+ 15    -- Print results
+ 16    DBMS_OUTPUT.PUT_LINE('Gross pay: $' || TO_CHAR(v_gross_pay, '99999.99'));
+ 17    DBMS_OUTPUT.PUT_LINE('Net pay: $' || TO_CHAR(v_net_pay, '99999.99'));
+ 18  END;
+ 19  /
+Enter value for enter_hours: 4
+old   9:   v_hours := &Enter_Hours;
+new   9:   v_hours := 4;
+Enter value for enter_rate: 3
+old  10:   v_rate := &Enter_Rate;
+new  10:   v_rate := 3;
+Gross pay: $    12.00
+Net pay: $     8.64
+
+PL/SQL procedure successfully completed.
+
+5.
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2    fn VARCHAR2(50) := 'SWADHIN';
+  3    ln VARCHAR2(50) := 'DALAI';
+  4    name VARCHAR2(100);
+  5  BEGIN
+  6     name := ln || ', ' || fn;
+  7    DBMS_OUTPUT.PUT_LINE('Full name: ' || name);
+  8  END;
+  9  /
+Full name: DALAI, SWADHIN
+
+PL/SQL procedure successfully completed.
+
+SPOOL OFF;

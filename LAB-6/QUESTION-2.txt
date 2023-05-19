@@ -1,0 +1,48 @@
+SQL> SELECT NAME,PHONE from FACULTY where FACULTYID=(SELECT FACULTYID from STUDENT where FIRST='PIYA');
+
+NAME   PHONE
+------ ----------
+PIYA   6754367954
+
+SQL> SELECT * from LOCATION where CAPACITY=2 AND ROOMTYPE=ANY(SELECT ROOMTYPE from ROOM where NOT ROOMDESC=301);
+
+    ROOMID BUILDING       ROOMNO   CAPACITY ROOMTYPE
+---------- ---------- ---------- ---------- ---------------
+       102 B-2               202          2 Red
+       105 B-2               205          2 Black
+
+SQL>  SELECT * from CRSSECTION where DAY='Spring' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION GROUP BY MAXCOUNT);
+
+no rows selected
+
+SQL> SELECT * from ROOM where ROOMTYPE=(SELECT ROOMTYPE from ROOM where ROOMTYPE='Green');
+
+ROOMTYPE   ROOMDESC
+---------- ----------
+Green      301
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203));
+
+Table created.
+
+SQL> SELECT * from SP03SECT;
+
+  COURSEID       CSID  FACULTYID     ROOMID
+---------- ---------- ---------- ----------
+         1         12         11         15
+         2         12         12         15
+         3         12         13         15
+         4         12         14         15
+         5         12         15         15
+
+SQL> DELETE from SP03SECT where FACULTYID=(SELECT FACULTYID from FACULTY where NAME='RAJ');
+
+1 row deleted.
+
+SQL> SELECT * from FACULTY where not exists(SELECT * from SP03SECT where SP03SECT.FACULTYID=FACULTY.FACULTYID);
+
+ FACULTYID NAME       ROOMID PHONE          DEPTID
+---------- ------ ---------- ---------- ----------
+       202 RAJ           106 8987896324        302
+
+

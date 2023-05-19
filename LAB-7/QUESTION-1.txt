@@ -1,0 +1,169 @@
+SQL> CREATE VIEW VIEW_01 AS SELECT EMPLOYEEID, LNAME, FNAME,POSITIONID, SUPERVISOR, HIREDATE, DEPTID FROM EMPLOYEE;
+
+View created.
+
+SQL> SELECT * FROM VIEW_01;
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      DEPTID           
+---------- ------ -------- ---------- ---------- --------- ----------           
+       101 NAGAR  ASHU            201 ABC        23-JAN-07        301           
+       102 DAS    RAJ             202 XYZ        01-SEP-04        302           
+       103 ROY    PIYA            203 PRT        17-AUG-05        303           
+       104 ALI    JIYA            204 CDE        14-FEB-00        304           
+       105 MURTHY RANGA           205 JKL        19-JUN-10        305           
+
+SQL> CREATE VIEW VIEW_02 AS SELECT d.DEPTNAME, AVG(e.SALARY) AS AVG_SALARY FROM DEPARTMENT d INNER JOIN EMPLOYEE e ON d.DEPTID=e.DEPTID GROUP BY DEPTNAME;
+
+View created.
+
+SQL> SELECT * FROM VIEW_02;
+
+DEPTNAME AVG_SALARY                                                             
+-------- ----------                                                             
+WT           275000                                                             
+AFL          475000                                                             
+DBMS         450000                                                             
+COA          950000                                                             
+OS           350000     
+
+SQL> CREATE INDEX INDEX_01 ON STUDENT(MAJORID);
+
+Index created.                                                        
+
+SQL> CREATE SEQUENCE SEQUENCE_01 INCREMENT BY 1  START WITH 100 MAXVALUE 999 NOCACHE;
+
+Sequence created.
+
+SQL> INSERT INTO LOCATION(ROOMID) VALUES(SEQUENCE_01.NEXTVAL);
+
+1 row created.
+
+SQL> SELECT SEQUENCE_01.CURRVAL FROM DUAL;
+
+   CURRVAL                                                                      
+----------                                                                      
+       100                                                                      
+
+SQL> SELECT * FROM LOCATION;
+
+    ROOMID BUILDING       ROOMNO   CAPACITY ROOMTYPE                            
+---------- ---------- ---------- ---------- ---------------                     
+       101 B-1               201          1 Blue                                
+       102 B-2               202          2 Red                                 
+       103 B-2               203          2 Green                               
+       104 B-1               204          1 Yellow                              
+       105 B-2               205          2 Black                               
+       100                                                                      
+
+6 rows selected.
+
+SQL> GRANT SELECT ON TERM TO TEST_21051948;
+
+Grant succeeded.
+
+SQL> INSERT INTO TERM(TERMID,TERMDESC) VALUES(106,206);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE
+---------- ---------- ---------- ----------
+       101        201 09/01/2023 23/03/2023
+       102        202 10/01/2023 24/03/2023
+        50        203 11/01/2023 25/03/2023
+       104        204 12/01/2023 26/03/2023
+       105        205 13/01/2023 27/03/2023
+       106        206
+
+6 rows selected.
+
+SQL> SELECT * FROM STUDENT WHERE STUDENTID=101 FOR UPDATE OF MAJORID;
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM
+---------- ------ -------- -------------- -------- -------- ------ ----------
+BIRTHDATE  FACULTYID    MAJORID PHONE
+--------- ---------- ---------- ----------
+       101 NAGAR  ASHU     AG SQUARE      BBSR     ODISHA   751003 START1
+20-MAR-03        201        301 7978564789
+
+
+SQL> UPDATE STUDENT SET MAJORID=600 WHERE STUDENTID=101;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE VIEW VIEW_03 AS SELECT E.FNAME,E.DEPTID,(E.SALARY + E.COMMISSION) AS TOTAL_SALARY FROM EMPLOYEE E WHERE E.DEPTID=301 WITH CHECK OPTION CONSTRAINT C51;
+
+View created.
+
+SQL> SELECT * FROM VIEW_03;
+
+FNAME        DEPTID TOTAL_SALARY
+-------- ---------- ------------
+ASHU            301       451200
+
+SQL> CREATE VIEW VIEW_04 AS SELECT DEPTNAME, SUM(SALARY) AS TOTAL_SALARY FROM EMPLOYEE E JOIN DEPT D ON E.DEPTID=D.DEPTID GROUP BY DEPTNAME;
+
+View created.
+
+SQL> SELECT * FROM VIEW_04;
+
+DEPTNAME   TOTAL_SALARY
+---------- ------------
+WELFARE          275000
+DEALS            950000
+RD               350000
+HR               450000
+INFO             475000
+
+SQL> CREATE SEQUENCE EMPID_SEQ START WITH 106 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> CREATE SEQUENCE DEPTID_SEQ START WITH 306 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.NEXTVAL,'MINING');
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID
+---------- ---------- ---------- ----------
+       101 HR         LA                301
+       102 RD         LV                302
+       103 WELFARE    NK                303
+       104 INFO       NJ                304
+       105 DEALS      TN                305
+           MINING                       306
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',306,750000,3000);
+
+1 row created.
+
+SQL> SELECT EMPLOYEEID, FNAME, DEPTID, SALARY, COMMISSION FROM EMPLOYEE;
+
+EMPLOYEEID FNAME        DEPTID     SALARY COMMISSION
+---------- -------- ---------- ---------- ----------
+       101 ASHU            301     450000       1200
+       102 RAJ             302     350000       9999
+       103 PIYA            303     275000       6000
+       104 JIYA            304     475000       7000
+       105 RANGA           305     950000       9000
+       106 ROHIT           306     750000       3000
+
+6 rows selected.
+
+
+
+

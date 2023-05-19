@@ -1,0 +1,36 @@
+SQL> SELECT INITCAP(FIRST)||' '||INITCAP(LAST) AS NAME, MAJORDESC AS MAJOR from STUDENT NATURAL JOIN MAJOR;
+
+NAME                 MAJOR
+--------------- ----------
+Ashu Nagar              11
+Raj Das                 12
+Piya Roy                13
+Jiya Ali                14
+Ranga Murthy            15
+
+SQL> SELECT S.FIRST, S.LAST, R.FINAL from STUDENT S JOIN REGISTRATION R ON S.STUDENTID=R.STUDENTID WHERE R.FINAL=30 AND STARTTERM='START3';
+
+no rows selected                             
+
+SQL> SELECT INITCAP(FIRST) ||' '|| INITCAP(LAST) AS STUDENT_NAME, NAME, BUILDING from STUDENT LEFT OUTER JOIN (FACULTY LEFT OUTER JOIN LOCATION using(RoomID)) using(FACULTYID);
+
+STUDENT_NAME    NAME   BUILDING                                                 
+--------------- ------ ----------                                               
+Ashu Nagar      ASHU   B-1                                                      
+Raj Das         RAJ    B-2                                                      
+Piya Roy        PIYA   B-2                                                      
+Jiya Ali        JIYA   B-1                                                      
+Ranga Murthy    RANGA  B-2                                                      
+
+SQL> 13 TO BE DONE;
+
+SQL> SELECT TITLE, PREREQ from COURSE;
+
+TITLE PREREQ                                                                    
+----- ---------------                                                           
+DBMS  DATA BASE                                                                 
+OS    SYSTEM                                                                    
+WT    TECHNOLOGY                                                                
+AFL   LANGUAGE                                                                  
+COA   ARCHITECTURE                                                              
+

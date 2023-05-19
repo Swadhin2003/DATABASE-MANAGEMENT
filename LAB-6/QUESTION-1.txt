@@ -1,0 +1,100 @@
+SQL> SELECT DEPTNAME FROM DEPT WHERE EMPLOYEEID=(SELECT EMPLOYEEID FROM EMPLOYEE WHERE FNAME='JIYA');
+
+DEPTNAME                                                                        
+----------                                                                      
+INFO                                                                            
+
+SQL> SELECT SUPERVISOR FROM EMPLOYEE WHERE EMPLOYEEID=102;
+
+SUPERVISOR                                                                      
+----------                                                                      
+XYZ                                                                             
+                                                        
+SQL> SELECT FNAME, LNAME FROM EMPLOYEE WHERE QUALID=(SELECT QUALDESC FROM QUALIFICATION WHERE QUALID=105);
+
+FNAME    LNAME                                                                  
+-------- ------                                                                 
+RANGA    MURTHY    
+
+SQL> SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*);
+
+DEPARTME MAX_NO_OF_EMPLOYEES
+-------- -------------------
+WT                         1
+AFL                        1
+OS                         1
+COA                        1
+DBMS                       1                                                            
+
+SQL> SELECT FNAME, LNAME, HIREDATE FROM EMPLOYEE WHERE HIREDATE>(SELECT HIREDATE FROM EMPLOYEE WHERE FNAME='RAJ');
+
+FNAME    LNAME  HIREDATE                                                        
+-------- ------ ---------                                                       
+ASHU     NAGAR  23-JAN-07                                                       
+PIYA     ROY    17-AUG-05                                                       
+RANGA    MURTHY 19-JUN-10                                                       
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE EMPLOYEEID=(SELECT EMPLOYEEID FROM DEPT WHERE DEPTNAME='HR');
+
+FNAME                                                                           
+--------                                                                        
+ASHU           
+
+SQL> CREATE TABLE EMP30 AS (SELECT EMPLOYEEID,FNAME,LNAME,HIREDATE,SALARY from EMPLOYEE where DEPTID=303);
+
+Table created.
+
+SQL> SELECT * from EMP30;
+
+EMPLOYEEID FNAME    LNAME  HIREDATE      SALARY
+---------- -------- ------ --------- ----------
+       103 PIYA     ROY    17-AUG-05     275000
+
+SQL> INSERT into EMP30(EMPLOYEEID,FNAME,LNAME,HIREDATE) SELECT EMPLOYEEID,FNAME,LNAME,HIREDATE from EMPLOYEE where DEPTID=304;
+
+1 row created.
+
+SQL> SELECT * from EMP30;
+
+EMPLOYEEID FNAME    LNAME  HIREDATE      SALARY
+---------- -------- ------ --------- ----------
+       103 PIYA     ROY    17-AUG-05     275000
+       104 JIYA     ALI    14-FEB-00
+
+SQL> 9 TO BE DONE;
+
+SQL> SELECT MIN(SALARY) AS MINIMUM from EMPLOYEE GROUP BY DEPTID;
+
+   MINIMUM
+----------
+    275000
+    450000
+    475000
+    350000
+    950000
+
+SQL> SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPTID from DEPT where DEPTNAME='WELFARE'));
+
+EMPLOYEEID DEPENDENTID DEPDOB     RELATION
+---------- ----------- ---------- ----------
+       103         403 23-01-2007 STAFF
+
+SQL> SELECT FNAME from EMPLOYEE where EMPLOYEEID=ANY(SELECT EMPLOYEEID from DEPENDENT where RELATION IS NULL);
+
+no rows selected
+
+SQL> SELECT AVG(e.SALARY) AS AVERAGE_SALARY,d.DEPTNAME AS DEPARTMENT from EMPLOYEE e,DEPT d where e.DEPTID=d.DEPTID GROUP BY e.DEPTID,d.DEPTNAME;
+
+AVERAGE_SALARY DEPARTMENT
+-------------- ----------
+        350000 RD
+        475000 INFO
+        275000 WELFARE
+        450000 HR
+        950000 DEALS
+
+
+
+                                                                 
+
+

@@ -1,0 +1,736 @@
+SQL> CREATE INDEX INDEX_01 ON STUDENT(MAJORID);
+CREATE INDEX INDEX_01 ON STUDENT(MAJORID)
+                                 *
+ERROR at line 1:
+ORA-01408: such column list already indexed 
+
+
+SQL> DROP INDEX INDEX_01
+  2  DROP INDEX INDEX_01;
+DROP INDEX INDEX_01
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> DROP INDEX INDEX_01;
+DROP INDEX INDEX_01
+           *
+ERROR at line 1:
+ORA-01418: specified index does not exist 
+
+
+SQL> ALTER INDEX INDEX_01 REBUILD;
+ALTER INDEX INDEX_01 REBUILD
+*
+ERROR at line 1:
+ORA-01418: specified index does not exist 
+
+
+SQL> CREATE INDEX INDEX_01 ON STUDENT(MAJORID);
+CREATE INDEX INDEX_01 ON STUDENT(MAJORID)
+                                 *
+ERROR at line 1:
+ORA-01408: such column list already indexed 
+
+
+SQL> ALTER INDEX MAJORID REBUILD;
+ALTER INDEX MAJORID REBUILD
+*
+ERROR at line 1:
+ORA-01418: specified index does not exist 
+
+
+SQL> SELECT INDEX_01,STUDENT FROM USER_INDEXES;
+SELECT INDEX_01,STUDENT FROM USER_INDEXES
+                *
+ERROR at line 1:
+ORA-00904: "STUDENT": invalid identifier 
+
+
+SQL> SELECT * FROM STUDENT;
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       101 NAGAR  ASHU     AG SQUARE      BBSR     ODISHA   751003 START1       
+20-MAR-03        201        301 7978564789                                      
+                                                                                
+       102 DAS    RAJ      BOSE COLONY    ANGUL    ODISHA   756001 START2       
+21-MAR-02        202        302 8987896324                                      
+                                                                                
+       103 ROY    PIYA     IRC            BBSR     ODISHA   751020 START3       
+08-SEP-02        203        303 6754367954                                      
+                                                                                
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       104 ALI    JIYA     CRP            BBSR     ODISHA   751017 START4       
+07-FEB-02        204        304 7658769934                                      
+                                                                                
+       105 MURTHY RANGA    PATEL MARG     PURI     ODISHA   752001 START5       
+14-NOV-02        205        305 8798723895                                      
+                                                                                
+
+SQL> CREATE INDEX INDEX_01 ON STUDENT(MAJORID);
+CREATE INDEX INDEX_01 ON STUDENT(MAJORID)
+                                 *
+ERROR at line 1:
+ORA-01408: such column list already indexed 
+
+
+SQL> DROP INDEX STUDENT.INDEX_01;
+DROP INDEX STUDENT.INDEX_01
+                   *
+ERROR at line 1:
+ORA-01418: specified index does not exist 
+
+
+SQL> done;
+SP2-0042: unknown command "done" - rest of line ignored.
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> DROP INDEX STUDENT.STUDENT_INDEX;
+DROP INDEX STUDENT.STUDENT_INDEX
+                   *
+ERROR at line 1:
+ORA-01418: specified index does not exist 
+
+
+SQL> DROP INDEX STUDENT.INDEX_STUDENT;
+DROP INDEX STUDENT.INDEX_STUDENT
+                   *
+ERROR at line 1:
+ORA-01418: specified index does not exist 
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> GRANT SELECT ON TERM TO Swadhin1948;
+GRANT SELECT ON TERM TO Swadhin1948
+                        *
+ERROR at line 1:
+ORA-01749: you may not GRANT/REVOKE privileges to/from yourself 
+
+
+SQL> GRANT SELECT ON TERM TO USER1948;
+GRANT SELECT ON TERM TO USER1948
+                        *
+ERROR at line 1:
+ORA-01917: user or role 'USER1948' does not exist 
+
+
+SQL> GRANT SELECT ON TERM TO TEST_1948;
+GRANT SELECT ON TERM TO TEST_1948
+                        *
+ERROR at line 1:
+ORA-01917: user or role 'TEST_1948' does not exist 
+
+
+SQL> GRANT SELECT ON TERM TO TEST1948;
+GRANT SELECT ON TERM TO TEST1948
+                        *
+ERROR at line 1:
+ORA-01917: user or role 'TEST1948' does not exist 
+
+
+SQL> GRANT SELECT ON TERM TO TEST;
+GRANT SELECT ON TERM TO TEST
+                        *
+ERROR at line 1:
+ORA-01917: user or role 'TEST' does not exist 
+
+
+SQL> GRANT SELECT ON TERM TO TEST_21051948;
+
+Grant succeeded.
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+        50        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> INSERT INTO (TERMID,TERMDESC) VALUES(106,'WINTER 2004');
+INSERT INTO (TERMID,TERMDESC) VALUES(106,'WINTER 2004')
+             *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO TERM(TERMID,TERMDESC) VALUES(106,'WINTER 2004');
+INSERT INTO TERM(TERMID,TERMDESC) VALUES(106,'WINTER 2004')
+                                             *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> INSERT INTO TERM(TERMID,TERMDESC) VALUES(106,206);
+
+1 row created.
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+        50        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+       106        206                                                           
+
+6 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+        50        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+       106        206                                                           
+
+6 rows selected.
+
+SQL> SELECT * FROM STUDENT;
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       101 NAGAR  ASHU     AG SQUARE      BBSR     ODISHA   751003 START1       
+20-MAR-03        201        301 7978564789                                      
+                                                                                
+       102 DAS    RAJ      BOSE COLONY    ANGUL    ODISHA   756001 START2       
+21-MAR-02        202        302 8987896324                                      
+                                                                                
+       103 ROY    PIYA     IRC            BBSR     ODISHA   751020 START3       
+08-SEP-02        203        303 6754367954                                      
+                                                                                
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       104 ALI    JIYA     CRP            BBSR     ODISHA   751017 START4       
+07-FEB-02        204        304 7658769934                                      
+                                                                                
+       105 MURTHY RANGA    PATEL MARG     PURI     ODISHA   752001 START5       
+14-NOV-02        205        305 8798723895                                      
+                                                                                
+
+SQL> SELECT * FROM STUDENT WHERE STUDENTID=101 FOR UPDATE OF MAJORID;
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       101 NAGAR  ASHU     AG SQUARE      BBSR     ODISHA   751003 START1       
+20-MAR-03        201        301 7978564789                                      
+                                                                                
+
+SQL> UPDATE STUDENT SET MAJORID=600 WHERE STUDENTID=101;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE VIEW VIEW_03 AS SELECT E.FNAME,E.DEPTID,(E.SALARY + E.COMMISSION) AS TOTAL_SALARY FROM EMPLOYEE E WHERE E.DEPTID=;
+CREATE VIEW VIEW_03 AS SELECT E.FNAME,E.DEPTID,(E.SALARY + E.COMMISSION) AS TOTAL_SALARY FROM EMPLOYEE E WHERE E.DEPTID=
+                                                                                                                       *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT * FROM EMPLOYEE;
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       101 NAGAR  ASHU            201 ABC        23-JAN-07     450000       1200
+       301        401                                                           
+                                                                                
+       102 DAS    RAJ             202 XYZ        01-SEP-04     350000       9999
+       302        402                                                           
+                                                                                
+       103 ROY    PIYA            203 PRT        17-AUG-05     275000       6000
+       303        403                                                           
+                                                                                
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       104 ALI    JIYA            204 CDE        14-FEB-00     475000       7000
+       304        404                                                           
+                                                                                
+       105 MURTHY RANGA           205 JKL        19-JUN-10     950000       9000
+       305        405                                                           
+                                                                                
+
+SQL> CREATE VIEW VIEW_03 AS SELECT E.FNAME,E.DEPTID,(E.SALARY + E.COMMISSION) AS TOTAL_SALARY FROM EMPLOYEE E WHERE E.DEPTID=301 WITH CHECK OPTION CONSTRAINT C51;
+
+View created.
+
+SQL> SELECT * FROM VIEW_03;
+
+FNAME        DEPTID TOTAL_SALARY                                                
+-------- ---------- ------------                                                
+ASHU            301       451200                                                
+
+SQL> CREATE VIEW VIEW_04 AS SELECT DEPTNAME, SUM(SALARY) AS TOTAL_SALARY FROM EMPLOYEE E JOIN DEPT D ON E.DEPTID=D.DEPTID GROUP BY DEPTNAME;
+
+View created.
+
+SQL> SELECT * FROM VIEW_04;
+
+DEPTNAME   TOTAL_SALARY                                                         
+---------- ------------                                                         
+WELFARE          275000                                                         
+DEALS            950000                                                         
+RD               350000                                                         
+HR               450000                                                         
+INFO             475000                                                         
+
+SQL> CREATE SEQUENCE DEPTID_SEQ START WITH 306 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> CREATE SEQUENCE EMPID_SEQ START WITH 106 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.NEXTVAL,'MINING');
+INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.NEXTVAL,'MINING')
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SWADHIN1948"."DEPT"."EMPLOYEEID") 
+
+
+SQL> DESC DEPT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEEID                                NOT NULL NUMBER(3)
+ DEPTNAME                                           VARCHAR2(10)
+ LOCATION                                           VARCHAR2(10)
+ DEPTID                                             NUMBER(3)
+
+SQL> ALTER TABLE DEPT DROP CONSTRAINT C32;
+
+Table altered.
+
+SQL> DESC DEPT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEEID                                         NUMBER(3)
+ DEPTNAME                                           VARCHAR2(10)
+ LOCATION                                           VARCHAR2(10)
+ DEPTID                                             NUMBER(3)
+
+SQL> INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.NEXTVAL,'MINING');
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+           MINING                       307                                     
+
+6 rows selected.
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPID_SEQ.NEXTVAL,750000,3000);
+INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPID_SEQ.NEXTVAL,750000,3000)
+                                                                                                                *
+ERROR at line 1:
+ORA-02289: sequence does not exist 
+
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPTID_SEQ.NEXTVAL,750000,3000);
+
+1 row created.
+
+SQL> SELECT EMPLOYEEID, FNAME, DEPTID, SALARY FROM EMPLOYEE;
+
+EMPLOYEEID FNAME        DEPTID     SALARY                                       
+---------- -------- ---------- ----------                                       
+       101 ASHU            301     450000                                       
+       102 RAJ             302     350000                                       
+       103 PIYA            303     275000                                       
+       104 JIYA            304     475000                                       
+       105 RANGA           305     950000                                       
+       106 ROHIT           308     750000                                       
+
+6 rows selected.
+
+SQL> DROP SEQUENCE DEPTID_SEQ;
+
+Sequence dropped.
+
+SQL> DROP SEQUENCE EMPID_SEQ;
+
+Sequence dropped.
+
+SQL> SELECT EMPLOYEEID, FNAME, DEPTID, SALARY FROM EMPLOYEE;
+
+EMPLOYEEID FNAME        DEPTID     SALARY                                       
+---------- -------- ---------- ----------                                       
+       101 ASHU            301     450000                                       
+       102 RAJ             302     350000                                       
+       103 PIYA            303     275000                                       
+       104 JIYA            304     475000                                       
+       105 RANGA           305     950000                                       
+       106 ROHIT           308     750000                                       
+
+6 rows selected.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+           MINING                       307                                     
+
+6 rows selected.
+
+SQL> DELETE FROM EMPLOYEE WHERE DEPTID=308;
+
+1 row deleted.
+
+SQL> DELETE FROM DEPT WHERE DEPTID=307;
+
+1 row deleted.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+
+SQL> SELECT * FROM EMP;
+SELECT * FROM EMP
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT * FROM EMPLOYEE;
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       101 NAGAR  ASHU            201 ABC        23-JAN-07     450000       1200
+       301        401                                                           
+                                                                                
+       102 DAS    RAJ             202 XYZ        01-SEP-04     350000       9999
+       302        402                                                           
+                                                                                
+       103 ROY    PIYA            203 PRT        17-AUG-05     275000       6000
+       303        403                                                           
+                                                                                
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       104 ALI    JIYA            204 CDE        14-FEB-00     475000       7000
+       304        404                                                           
+                                                                                
+       105 MURTHY RANGA           205 JKL        19-JUN-10     950000       9000
+       305        405                                                           
+                                                                                
+
+SQL> CREATE SEQUENCE DEPTID_SEQ START WITH 306 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> CREATE SEQUENCE EMPID_SEQ START WITH 106 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.CURRVAL,'MINING');
+INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.CURRVAL,'MINING')
+                                         *
+ERROR at line 1:
+ORA-08002: sequence DEPTID_SEQ.CURRVAL is not yet defined in this session 
+
+
+SQL> DROP SEQUENCE DEPTID_SEQ;
+
+Sequence dropped.
+
+SQL> DROP SEQUENCE EMPID_SEQ;
+
+Sequence dropped.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+
+SQL> SELECT * FROM EMPLOYEE;
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       101 NAGAR  ASHU            201 ABC        23-JAN-07     450000       1200
+       301        401                                                           
+                                                                                
+       102 DAS    RAJ             202 XYZ        01-SEP-04     350000       9999
+       302        402                                                           
+                                                                                
+       103 ROY    PIYA            203 PRT        17-AUG-05     275000       6000
+       303        403                                                           
+                                                                                
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       104 ALI    JIYA            204 CDE        14-FEB-00     475000       7000
+       304        404                                                           
+                                                                                
+       105 MURTHY RANGA           205 JKL        19-JUN-10     950000       9000
+       305        405                                                           
+                                                                                
+
+SQL> CREATE SEQUENCE EMPID_SEQ START WITH 105 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> CREATE SEQUENCE DEPTID_SEQ START WITH 305 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.NEXTVAL,'MINING');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPTID_SEQ.CURRVAL,750000,3000);
+INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPTID_SEQ.CURRVAL,750000,3000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SWADHIN1948.C30) violated 
+
+
+SQL> DELETE CONSTRAINT C30;
+DELETE CONSTRAINT C30
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> ALTER TABLE EMPLOYEE DROP CONSTRAINT C30;
+
+Table altered.
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPTID_SEQ.CURRVAL,750000,3000);
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+           MINING                       305                                     
+
+6 rows selected.
+
+SQL> SELECT * FROM EMPID_SEQ;
+SELECT * FROM EMPID_SEQ
+              *
+ERROR at line 1:
+ORA-02201: sequence not allowed here 
+
+
+SQL> SELECT EMPLOYEEID, LNAME, FNAME, DEPTID, SALARY FROM EMPLOYEE;
+
+EMPLOYEEID LNAME  FNAME        DEPTID     SALARY                                
+---------- ------ -------- ---------- ----------                                
+       101 NAGAR  ASHU            301     450000                                
+       102 DAS    RAJ             302     350000                                
+       103 ROY    PIYA            303     275000                                
+       104 ALI    JIYA            304     475000                                
+       105 MURTHY RANGA           305     950000                                
+       106 SHARMA ROHIT           305     750000                                
+
+6 rows selected.
+
+SQL> DROP SEQUENCE DEPTID_SEQ;
+
+Sequence dropped.
+
+SQL> DELETE FROM EMPLOYEE WHERE EMPLOYEEID=106;
+
+1 row deleted.
+
+SQL> DROP SEQUENCE EMPID_SEQ;
+
+Sequence dropped.
+
+SQL> DELETE FROM DEPT WHERE DEPTNAME='MINING';
+
+1 row deleted.
+
+SQL> SELECT * FROM EMPLOYEE;
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       101 NAGAR  ASHU            201 ABC        23-JAN-07     450000       1200
+       301        401                                                           
+                                                                                
+       102 DAS    RAJ             202 XYZ        01-SEP-04     350000       9999
+       302        402                                                           
+                                                                                
+       103 ROY    PIYA            203 PRT        17-AUG-05     275000       6000
+       303        403                                                           
+                                                                                
+
+EMPLOYEEID LNAME  FNAME    POSITIONID SUPERVISOR HIREDATE      SALARY COMMISSION
+---------- ------ -------- ---------- ---------- --------- ---------- ----------
+    DEPTID     QUALID                                                           
+---------- ----------                                                           
+       104 ALI    JIYA            204 CDE        14-FEB-00     475000       7000
+       304        404                                                           
+                                                                                
+       105 MURTHY RANGA           205 JKL        19-JUN-10     950000       9000
+       305        405                                                           
+                                                                                
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+
+SQL> CREATE SEQUENCE EMPID_SEQ START WITH 106 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> CREATE SEQUENCE DEPTID_SEQ START WITH 306 INCREMENT BY 1;
+
+Sequence created.
+
+SQL> SELECT DEPTID_SEQ.CURRVAL FROM DUAL;
+SELECT DEPTID_SEQ.CURRVAL FROM DUAL
+       *
+ERROR at line 1:
+ORA-08002: sequence DEPTID_SEQ.CURRVAL is not yet defined in this session 
+
+
+SQL> SELECT EMPID_SEQ.CURRVAL FROM DUAL;
+SELECT EMPID_SEQ.CURRVAL FROM DUAL
+       *
+ERROR at line 1:
+ORA-08002: sequence EMPID_SEQ.CURRVAL is not yet defined in this session 
+
+
+SQL> INSERT INTO DEPT(DEPTID,DEPTNAME) VALUES(DEPTID_SEQ.NEXTVAL,'MINING');
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+           MINING                       306                                     
+
+6 rows selected.
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPTID_SEQ.CURRVAL,750000,3000);
+INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',DEPTID_SEQ.CURRVAL,750000,3000)
+                                                                                                                *
+ERROR at line 1:
+ORA-08002: sequence DEPTID_SEQ.CURRVAL is not yet defined in this session 
+
+
+SQL> SELECT DEPTIDSEQ.CURRVAL FROM DUAL;
+SELECT DEPTIDSEQ.CURRVAL FROM DUAL
+       *
+ERROR at line 1:
+ORA-02289: sequence does not exist 
+
+
+SQL> CREATE SEQUENCE DEPTID_SEQ START WITH 306 INCREMENT BY 1;
+CREATE SEQUENCE DEPTID_SEQ START WITH 306 INCREMENT BY 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> INSERT INTO EMPLOYEE(EMPLOYEEID,LNAME,FNAME,DEPTID,SALARY,COMMISSION) VALUES(EMPID_SEQ.NEXTVAL,'SHARMA','ROHIT',306,750000,3000);
+
+1 row created.
+
+SQL> SELECT EMPLOYEEID, FNAME, DEPTID, SALARY, COMMISSION FROM EMPLOYEE;
+
+EMPLOYEEID FNAME        DEPTID     SALARY COMMISSION                            
+---------- -------- ---------- ---------- ----------                            
+       101 ASHU            301     450000       1200                            
+       102 RAJ             302     350000       9999                            
+       103 PIYA            303     275000       6000                            
+       104 JIYA            304     475000       7000                            
+       105 RANGA           305     950000       9000                            
+       106 ROHIT           306     750000       3000                            
+
+6 rows selected.
+
+SQL> SPOOL OFF;

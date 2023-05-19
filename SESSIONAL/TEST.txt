@@ -1,0 +1,175 @@
+SQL> CREATE TABLE STUDENT_1948(ROLL_NO VARCHAR2(5) CONSTRAINT CT1 PRIMARY KEY, SNAME VARCHAR2(15), MARKS NUMBER(4));
+
+Table created.
+
+SQL> INSERT INTO STUDENT_1948 VALUES('S01','PRAADIP',75);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_1948 VALUES('S02','AASTIK',82);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_1948 VALUES('S03','TUSHAR',63);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_1948 VALUES('S04','ARPAN',79);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_1948 VALUES('S05','ANUMITA',66);
+
+1 row created.
+
+SQL> SELECT * FROM STUDENT_1948;
+
+ROLL_ SNAME                MARKS                                                
+----- --------------- ----------                                                
+S01   PRAADIP                 75                                                
+S02   AASTIK                  82                                                
+S03   TUSHAR                  63                                                
+S04   ARPAN                   79                                                
+S05   ANUMITA                 66                                                
+
+SQL> CREATE TABLE BOOK_BORROW_1948(BID VARCHAR2(5), BNAME VARCHAR2(15), AUTHOR VARCHAR(10), ROLL_NO VARCHAR2(5));
+
+Table created.
+
+SQL> INSERT INTO BOOK_BORROW_1948 VALUES('I3','C','BGSwamy','S02');
+
+1 row created.
+
+SQL> INSERT INTO BOOK_BORROW_1948 VALUES('I2','DS','RBPatel','S05');
+
+1 row created.
+
+SQL> INSERT INTO BOOK_BORROW_1948 VALUES('I1','DS','ASBaluja','S03');
+
+1 row created.
+
+SQL> SELECT * FROM BOOK_BORROW_1948;
+
+BID   BNAME           AUTHOR     ROLL_                                          
+----- --------------- ---------- -----                                          
+I3    C               BGSwamy    S02                                            
+I2    DS              RBPatel    S05                                            
+I1    DS              ASBaluja   S03                                            
+
+SQL> CREATE TABLE STATE_NAME_1948(CITY VARCHAR2(15), STATE VARCHAR2(20));
+
+Table created.
+
+SQL> INSERT INTO STATE_NAME_1948 VALUES('Mysore', 'Karnataka');
+
+1 row created.
+
+SQL> INSERT INTO STATE_NAME_1948 VALUES('Kolkata', 'West Bengal');
+
+1 row created.
+
+SQL> INSERT INTO STATE_NAME_1948 VALUES('Pune', 'Maharashtra');
+
+1 row created.
+
+SQL> INSERT INTO STATE_NAME_1948 VALUES('Chennai', 'Tamilnadu');
+
+1 row created.
+
+SQL> INSERT INTO STATE_NAME_1948 VALUES('Indore', 'Madhya pradesh');
+
+1 row created.
+
+SQL> SELECT * FROM STATE_NAME_1948;
+
+CITY            STATE                                                           
+--------------- --------------------                                            
+Mysore          Karnataka                                                       
+Kolkata         West Bengal                                                     
+Pune            Maharashtra                                                     
+Chennai         Tamilnadu                                                       
+Indore          Madhya pradesh                                                  
+
+1.
+SQL> SELECT SNAME FROM STUDENT_1948 WHERE MARKS=(SELECT MARKS FROM STUDENT_1948 WHERE SNAME='ARPAN');
+
+SNAME                                                                           
+---------------                                                                 
+ARPAN                                                                           
+
+2.
+SQL> SELECT SNAME FROM STUDENT_1948 WHERE MARKS>(SELECT MARKS FROM STUDENT_1948 WHERE SNAME='ARPAN');
+
+SNAME                                                                           
+---------------                                                                 
+AASTIK                                                                          
+
+3.
+SQL> ALTER TABLE STUDENT_1948 ADD HOBBY VARCHAR(10);
+
+Table altered.
+
+SQL> SELECT * FROM STUDENT_1948;
+
+ROLL_ SNAME                MARKS HOBBY                                          
+----- --------------- ---------- ----------                                     
+S01   PRAADIP                 75                                                
+S02   AASTIK                  82                                                
+S03   TUSHAR                  63                                                
+S04   ARPAN                   79                                                
+S05   ANUMITA                 66                                                
+
+SQL> UPDATE STUDENT_1948 SET HOBBY='A' WHERE ROLL_NO='S01';
+
+1 row updated.
+
+SQL> UPDATE STUDENT_1948 SET HOBBY='B' WHERE ROLL_NO='S02';
+
+1 row updated.
+
+SQL> UPDATE STUDENT_1948 SET HOBBY='C' WHERE ROLL_NO='S03';
+
+1 row updated.
+
+SQL> UPDATE STUDENT_1948 SET HOBBY='D' WHERE ROLL_NO='S04';
+
+1 row updated.
+
+SQL> UPDATE STUDENT_1948 SET HOBBY='E' WHERE ROLL_NO='S05';
+
+1 row updated.
+
+4.
+SQL> SELECT B.BID,B.AUTHOR,S.SNAME FROM STUDENT_1948 S NATURAL JOIN BOOK_BORROW_1948 B WHERE B.BNAME='DS';
+
+BID   AUTHOR     SNAME                                                          
+----- ---------- ---------------                                                
+I1    ASBaluja   TUSHAR                                                         
+I2    RBPatel    ANUMITA                                                        
+
+6.
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2      n NUMBER := 10;
+  3      sum_of_squares NUMBER := 0;
+  4  BEGIN
+  5      FOR i IN 1..n LOOP
+  6          sum_of_squares := sum_of_squares + (i * i);
+  7      END LOOP;
+  8      DBMS_OUTPUT.PUT_LINE('The sum of the squares of numbers from 1 to ' || n || ' is ' || sum_of_squares);
+  9  END;
+ 10  /
+The sum of the squares of numbers from 1 to 10 is 385                           
+
+PL/SQL procedure successfully completed.
+
+5.
+SQL> SELECT S.SNAME, S.ROLL_NO FROM STUDENT_1948 S INNER JOIN BOOK_BORROW_1948 B ON S.ROLL_NO = B.ROLL_NO;
+
+SNAME           ROLL_                                                           
+--------------- -----                                                           
+AASTIK          S02                                                             
+TUSHAR          S03                                                             
+ANUMITA         S05                                                             
+
+SQL> SPOOL OFF;

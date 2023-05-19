@@ -1,0 +1,750 @@
+SQL> INSERT into DEPARTMENT values (301, 'DBMS', 201);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (302, 'OS', 202);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (303, 'WT', 203);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (304, 'AFL', 204);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (305, 'COA', 205);
+
+1 row created.
+
+SQL> SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPARTMENT GROUP BY d.DEPTNAME ORDER BY COUNT(*) DESC FETCH LIMIT 1;
+SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPARTMENT GROUP BY d.DEPTNAME ORDER BY COUNT(*) DESC FETCH LIMIT 1
+                                                                                                                                                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*) DESC FETCH LIMIT 1;
+SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*) DESC FETCH LIMIT 1
+                                                                                                                                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> CREATE TABLE EMP30 AS (SELECT EMPLOYEEID,FNAME,LNAME,HIREDATE,SALARY from EMPLOYEE where DEPTID=303);
+
+Table created.
+
+SQL> SELECT * from EMP30;
+
+EMPLOYEEID FNAME    LNAME  HIREDATE      SALARY                                 
+---------- -------- ------ --------- ----------                                 
+       103 PIYA     ROY    17-AUG-05     275000                                 
+
+SQL> INSERT into EMP30(EMPLOYEEID,FNAME,LNAME,HIREDATE) SELECT EMPLOYEEID,FNAME,LNAME,HIREDATE from EMPLOYEE where DEPTID=304;
+
+1 row created.
+
+SQL> SELECT * from EMP30;
+
+EMPLOYEEID FNAME    LNAME  HIREDATE      SALARY                                 
+---------- -------- ------ --------- ----------                                 
+       103 PIYA     ROY    17-AUG-05     275000                                 
+       104 JIYA     ALI    14-FEB-00                                            
+
+SQL> SELECT MIN(SALARY) AS MINIMUM from EMPLOYEE GROUPBY DEPTID;
+SELECT MIN(SALARY) AS MINIMUM from EMPLOYEE GROUPBY DEPTID
+                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT MIN(SALARY) AS MINIMUM from EMPLOYEE GROUP BY DEPTID;
+
+   MINIMUM                                                                      
+----------                                                                      
+    275000                                                                      
+    450000                                                                      
+    475000                                                                      
+    350000                                                                      
+    950000                                                                      
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                401                                     
+       102 RD         LV                402                                     
+       103 WELFARE    NK                403                                     
+       104 INFO       NJ                404                                     
+       105 DEALS      TN                405                                     
+
+SQL> SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPARTMENT from DEPT where DEPTNAME='WELFARE'));
+SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPARTMENT from DEPT where DEPTNAME='WELFARE'))
+                                                                                                  *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT": invalid identifier 
+
+
+SQL> SELECT * FROM DEPENDENT;
+
+no rows selected
+
+SQL> 
+SQL> DESC DEPENDENT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEEID                                NOT NULL NUMBER(3)
+ DEPENDENTID                                        NUMBER(3)
+ DEPDOB                                             VARCHAR2(10)
+ RELATION                                           VARCHAR2(10)
+
+SQL> INSERT into DEPENDENT values (101, 401, '23-01-2007', 'STAFF');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (102, 402, '23-01-2007', 'STAFF');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (103, 403, '23-01-2007', 'STAFF');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (104, 404, '23-01-2007', 'STAFF');
+
+1 row created.
+
+SQL> INSERT into DEPENDENT values (105, 405, '23-01-2007', 'STAFF');
+
+1 row created.
+
+SQL> SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPARTMENT from DEPT where DEPTNAME='WELFARE'));
+SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPARTMENT from DEPT where DEPTNAME='WELFARE'))
+                                                                                                  *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT": invalid identifier 
+
+
+SQL> SELECT * FROM DEPARTMENT;
+
+    DEPTID DEPTNAME  FACULTYID                                                  
+---------- -------- ----------                                                  
+       301 DBMS            201                                                  
+       302 OS              202                                                  
+       303 WT              203                                                  
+       304 AFL             204                                                  
+       305 COA             205                                                  
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                401                                     
+       102 RD         LV                402                                     
+       103 WELFARE    NK                403                                     
+       104 INFO       NJ                404                                     
+       105 DEALS      TN                405                                     
+
+SQL> UPDATE DEPT SET DEPTID=301 where LOCATION=LA;
+UPDATE DEPT SET DEPTID=301 where LOCATION=LA
+                                          *
+ERROR at line 1:
+ORA-00904: "LA": invalid identifier 
+
+
+SQL> UPDATE DEPT SET DEPTID=301 where LOCATION='LA';
+
+1 row updated.
+
+SQL> UPDATE DEPT SET DEPTID=302 where LOCATION='LV';
+
+1 row updated.
+
+SQL> UPDATE DEPT SET DEPTID=303 where LOCATION='NK';
+
+1 row updated.
+
+SQL> UPDATE DEPT SET DEPTID=304 where LOCATION='NJ';
+
+1 row updated.
+
+SQL> UPDATE DEPT SET DEPTID=305 where LOCATION='TN';
+
+1 row updated.
+
+SQL> SELECT * FROM DEPT;
+
+EMPLOYEEID DEPTNAME   LOCATION       DEPTID                                     
+---------- ---------- ---------- ----------                                     
+       101 HR         LA                301                                     
+       102 RD         LV                302                                     
+       103 WELFARE    NK                303                                     
+       104 INFO       NJ                304                                     
+       105 DEALS      TN                305                                     
+
+SQL> SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPARTMENT from DEPT where DEPTNAME='WELFARE'));
+SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPARTMENT from DEPT where DEPTNAME='WELFARE'))
+                                                                                                  *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT": invalid identifier 
+
+
+SQL> SELECT * from DEPENDENT where EMPLOYEEID IN (SELECT EMPLOYEEID from EMPLOYEE where DEPTID=(SELECT DEPTID from DEPT where DEPTNAME='WELFARE'));
+
+EMPLOYEEID DEPENDENTID DEPDOB     RELATION                                      
+---------- ----------- ---------- ----------                                    
+       103         403 23-01-2007 STAFF                                         
+
+SQL> SELECT FNAME from EMPLOYEE where EMPLOYEEID=ANY(SELECT EMPLOYEEID from DEPENDENT where RELATION IS NULL);
+
+no rows selected
+
+SQL> SELECT FNAME from EMPLOYEE where EMPLOYEEID=(SELECT EMPLOYEEID from DEPENDENT where RELATION IS NULL);
+
+no rows selected
+
+SQL> SELECT AVG(e.SALARY) AS AVERAGE_SALARY,d.DEPTNAME AS DEPARTMENT from EMPLOYEE e,DEPT d where e.DEPTID=d.DEPARTMENT GROUP BY e.DEPTID,d.DEPTNAME;
+SELECT AVG(e.SALARY) AS AVERAGE_SALARY,d.DEPTNAME AS DEPARTMENT from EMPLOYEE e,DEPT d where e.DEPTID=d.DEPARTMENT GROUP BY e.DEPTID,d.DEPTNAME
+                                                                                                      *
+ERROR at line 1:
+ORA-00904: "D"."DEPARTMENT": invalid identifier 
+
+
+SQL> SELECT AVG(e.SALARY) AS AVERAGE_SALARY,d.DEPTNAME AS DEPARTMENT from EMPLOYEE e,DEPT d where e.DEPTID=d.DEPTID GROUP BY e.DEPTID,d.DEPTNAME;
+
+AVERAGE_SALARY DEPARTMENT                                                       
+-------------- ----------                                                       
+        350000 RD                                                               
+        475000 INFO                                                             
+        275000 WELFARE                                                          
+        450000 HR                                                               
+        950000 DEALS                                                            
+
+SQL> SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*);
+
+DEPARTME MAX_NO_OF_EMPLOYEES                                                    
+-------- -------------------                                                    
+WT                         1                                                    
+AFL                        1                                                    
+OS                         1                                                    
+COA                        1                                                    
+DBMS                       1                                                    
+
+SQL> SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*) DESC FETCH LIMIT 1;
+SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*) DESC FETCH LIMIT 1
+                                                                                                                                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*) FETCH LIMIT 1;
+SELECT d.DEPTNAME AS DEPARTMENT, COUNT(*) AS MAX_NO_OF_EMPLOYEES from EMPLOYEE e, DEPARTMENT d where e.DEPTID = d.DEPTID GROUP BY d.DEPTNAME ORDER BY COUNT(*) FETCH LIMIT 1
+                                                                                                                                                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT * FROM FACULTY;
+
+ FACULTYID NAME       ROOMID PHONE          DEPTID                              
+---------- ------ ---------- ---------- ----------                              
+       101 ASHU          105 7978564789        301                              
+       102 RAJ           106 8987896324        302                              
+       103 PIYA          107 6754367954        303                              
+       104 JIYA          108 7658769934        304                              
+       105 RANGA         109 8798723895        305                              
+
+SQL> SELECT NAME,PHONE from FACULTY where FACULTYID=(SELECT FACULTYID from STUDENT where FIRST='PIYA');
+
+no rows selected
+
+SQL> SELECT * FROM STUDENT;
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       101 NAGAR  ASHU     AG SQUARE      BBSR     ODISHA   751003 START1       
+20-MAR-03        201        301 7978564789                                      
+                                                                                
+       102 DAS    RAJ      BOSE COLONY    ANGUL    ODISHA   756001 START2       
+21-MAR-02        202        302 8987896324                                      
+                                                                                
+       103 ROY    PIYA     IRC            BBSR     ODISHA   751020 START3       
+08-SEP-02        203        303 6754367954                                      
+                                                                                
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM    
+---------- ------ -------- -------------- -------- -------- ------ ----------   
+BIRTHDATE  FACULTYID    MAJORID PHONE                                           
+--------- ---------- ---------- ----------                                      
+       104 ALI    JIYA     CRP            BBSR     ODISHA   751017 START4       
+07-FEB-02        204        304 7658769934                                      
+                                                                                
+       105 MURTHY RANGA    PATEL MARG     PURI     ODISHA   752001 START5       
+14-NOV-02        205        305 8798723895                                      
+                                                                                
+
+SQL> SELECT * FROM FACULTY;
+
+ FACULTYID NAME       ROOMID PHONE          DEPTID                              
+---------- ------ ---------- ---------- ----------                              
+       101 ASHU          105 7978564789        301                              
+       102 RAJ           106 8987896324        302                              
+       103 PIYA          107 6754367954        303                              
+       104 JIYA          108 7658769934        304                              
+       105 RANGA         109 8798723895        305                              
+
+SQL> UPDATE FACULTY SET FACULTYID=201 where DEPTID=301
+  2  UPDATE FACULTY SET FACULTYID=201 where DEPTID=301;
+UPDATE FACULTY SET FACULTYID=201 where DEPTID=301
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> UPDATE FACULTY SET FACULTYID=201 where DEPTID=301;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET FACULTYID=202 where DEPTID=302;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET FACULTYID=203 where DEPTID=303;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET FACULTYID=204 where DEPTID=304;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET FACULTYID=205 where DEPTID=305;
+
+1 row updated.
+
+SQL> SELECT NAME,PHONE from FACULTY where FACULTYID=(SELECT FACULTYID from STUDENT where FIRST='PIYA');
+
+NAME   PHONE                                                                    
+------ ----------                                                               
+PIYA   6754367954                                                               
+
+SQL> SELECT * FROM LOCATION;
+
+    ROOMID BUILDING       ROOMNO   CAPACITY ROOMTYPE                            
+---------- ---------- ---------- ---------- ---------------                     
+       101 B-1               201          1 Single-Bed                          
+       102 B-2               202          2 Double-Bed                          
+       103 B-2               203          2 Double-Bed                          
+       104 B-1               204          1 Single-Bed                          
+       105 B-2               205          2 Double-Bed                          
+
+SQL> SELECT * FROM ROOM;
+
+ROOMTYPE   ROOMDESC                                                             
+---------- ----------                                                           
+Blue       101                                                                  
+Red        201                                                                  
+Green      301                                                                  
+Yellow     401                                                                  
+Black      501                                                                  
+
+SQL> SELECT * from LOCATION where CAPACITY=2 AND ROOMTYPE=ANY(SELECT ROOMTYPE from ROOM where NOT ROOMDESC=301);
+
+no rows selected
+
+SQL> UPDATE LOCATION SET ROOMTYPE='Blue' where ROOMDESC=101;
+UPDATE LOCATION SET ROOMTYPE='Blue' where ROOMDESC=101
+                                          *
+ERROR at line 1:
+ORA-00904: "ROOMDESC": invalid identifier 
+
+
+SQL> UPDATE LOCATION SET ROOMTYPE='Blue' where ROOMID=101;
+
+1 row updated.
+
+SQL> UPDATE LOCATION SET ROOMTYPE='Red' where ROOMID=102;
+
+1 row updated.
+
+SQL> UPDATE LOCATION SET ROOMTYPE='Green' where ROOMID=103;
+
+1 row updated.
+
+SQL> UPDATE LOCATION SET ROOMTYPE='Yellow' where ROOMID=104;
+
+1 row updated.
+
+SQL> UPDATE LOCATION SET ROOMTYPE='Black' where ROOMID=105;
+
+1 row updated.
+
+SQL> SELECT * FROM ROOM;
+
+ROOMTYPE   ROOMDESC                                                             
+---------- ----------                                                           
+Blue       101                                                                  
+Red        201                                                                  
+Green      301                                                                  
+Yellow     401                                                                  
+Black      501                                                                  
+
+SQL> SELECT * FROM LOCATION;
+
+    ROOMID BUILDING       ROOMNO   CAPACITY ROOMTYPE                            
+---------- ---------- ---------- ---------- ---------------                     
+       101 B-1               201          1 Blue                                
+       102 B-2               202          2 Red                                 
+       103 B-2               203          2 Green                               
+       104 B-1               204          1 Yellow                              
+       105 B-2               205          2 Black                               
+
+SQL> SELECT * from LOCATION where CAPACITY=2 AND ROOMTYPE=ANY(SELECT ROOMTYPE from ROOM where NOT ROOMDESC=301);
+
+    ROOMID BUILDING       ROOMNO   CAPACITY ROOMTYPE                            
+---------- ---------- ---------- ---------- ---------------                     
+       102 B-2               202          2 Red                                 
+       105 B-2               205          2 Black                               
+
+SQL> SELECT * from CRSSECTION;
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          1 1                50         11 Monday     08:00:00        
+18:00:00           15         35                                                
+                                                                                
+        12          2 2                50         12 Monday     08:00:00        
+15:00:00           15         35                                                
+                                                                                
+        12          3 3                50         13 Monday     11:00:00        
+18:00:00           15         35                                                
+                                                                                
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          4 4                50         14 Monday     08:00:00        
+11:00:00           15         35                                                
+                                                                                
+        12          5 5                50         15 Monday     15:00:00        
+18:00:00           15         35                                                
+                                                                                
+
+SQL> SELECT * from CRSSECTION where DAY='MONDAY' AND MAX COUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION GROUP BY MAXCOUNT);
+SELECT * from CRSSECTION where DAY='MONDAY' AND MAX COUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION GROUP BY MAXCOUNT)
+                                                    *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT * from CRSSECTION where DAY='MONDAY' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION GROUP BY MAXCOUNT);
+
+no rows selected
+
+SQL> SELECT * from CRSSECTION where DAY='MONDAY' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION;
+SELECT * from CRSSECTION where DAY='MONDAY' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION
+                                                          *
+ERROR at line 1:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> SELECT * from CRSSECTION where DAY='MONDAY' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION);
+
+no rows selected
+
+SQL>  SELECT * from CRSSECTION where DAY='Monday' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION GROUP BY MAXCOUNT);
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          1 1                50         11 Monday     08:00:00        
+18:00:00           15         35                                                
+                                                                                
+        12          2 2                50         12 Monday     08:00:00        
+15:00:00           15         35                                                
+                                                                                
+        12          3 3                50         13 Monday     11:00:00        
+18:00:00           15         35                                                
+                                                                                
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          4 4                50         14 Monday     08:00:00        
+11:00:00           15         35                                                
+                                                                                
+        12          5 5                50         15 Monday     15:00:00        
+18:00:00           15         35                                                
+                                                                                
+
+SQL>  SELECT * from CRSSECTION where DAY='Spring' AND MAXCOUNT=(SELECT MAX(MAXCOUNT) from CRSSECTION GROUP BY MAXCOUNT);
+
+no rows selected
+
+SQL> SELECT * FROM ROOM;
+
+ROOMTYPE   ROOMDESC                                                             
+---------- ----------                                                           
+Blue       101                                                                  
+Red        201                                                                  
+Green      301                                                                  
+Yellow     401                                                                  
+Black      501                                                                  
+
+SQL> SELECT * from  ROOM where ROOMTYPE=(SELECT * from ROOM where ROOMTYPE='Green');
+SELECT * from  ROOM where ROOMTYPE=(SELECT * from ROOM where ROOMTYPE='Green')
+                                    *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> SELECT * from  ROOM where ROOMTYPE=(SELECT ROOMTYPE from ROOM where ROOMTYPE='Green');
+
+ROOMTYPE   ROOMDESC                                                             
+---------- ----------                                                           
+Green      301                                                                  
+
+SQL> SELECT * from ROOM where ROOMTYPE=(SELECT ROOMTYPE from ROOM where ROOMTYPE='Green');
+
+ROOMTYPE   ROOMDESC                                                             
+---------- ----------                                                           
+Green      301                                                                  
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+       103        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TER
+  2  MDESC='F'))
+  3  ;
+MDESC='F'))
+*
+ERROR at line 2:
+ORA-00920: invalid relational operator 
+
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203));
+
+Table created.
+
+SQL> SELECT * from SP03SECT;
+
+no rows selected
+
+SQL> SELECT * from CRSSECTION;
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          1 1                50         11 Monday     08:00:00        
+18:00:00           15         35                                                
+                                                                                
+        12          2 2                50         12 Monday     08:00:00        
+15:00:00           15         35                                                
+                                                                                
+        12          3 3                50         13 Monday     11:00:00        
+18:00:00           15         35                                                
+                                                                                
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME       
+---------- ---------- -------- ---------- ---------- ---------- ----------      
+ENDTIME        ROOMID   MAXCOUNT                                                
+---------- ---------- ----------                                                
+        12          4 4                50         14 Monday     08:00:00        
+11:00:00           15         35                                                
+                                                                                
+        12          5 5                50         15 Monday     15:00:00        
+18:00:00           15         35                                                
+                                                                                
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+       103        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> UPDATE TERM SET TERMID=50 WHERE TERMDESC=201;
+
+1 row updated.
+
+SQL> UPDATE TERM SET TERMID=50 WHERE TERMDESC=202;
+UPDATE TERM SET TERMID=50 WHERE TERMDESC=202
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SWADHIN1948.C23) violated 
+
+
+SQL> UPDATE TERM SET TERMID=101 WHERE TERMDESC=201;
+
+1 row updated.
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+       103        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> UPDATE TERM SET TERMID=50 WHERE TERMDESC=203;
+
+1 row updated.
+
+SQL> SELECT * FROM TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+        50        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> SELECT * from SP03SECT;
+
+no rows selected
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203));
+CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DROP table SP03SECT;
+
+Table dropped.
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203));
+
+Table created.
+
+SQL> SELECT * from SP03SECT;
+
+  COURSEID       CSID  FACULTYID     ROOMID                                     
+---------- ---------- ---------- ----------                                     
+         1         12         11         15                                     
+         2         12         12         15                                     
+         3         12         13         15                                     
+         4         12         14         15                                     
+         5         12         15         15                                     
+
+SQL> DROP table SP03SECT;
+
+Table dropped.
+
+SQL> UPDATE TERM SET TERMID=103 WHERE TERMDESC=203;
+
+1 row updated.
+
+SQL> SELECT * from TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+       103        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203));
+
+Table created.
+
+SQL> SELECT * from SP03SECT;
+
+no rows selected
+
+SQL> UPDATE TERM SET TERMID=50 WHERE TERMDESC=203;
+
+1 row updated.
+
+SQL> SELECT * from SP03SECT;
+
+no rows selected
+
+SQL> DROP table SP03SECT;
+
+Table dropped.
+
+SQL> CREATE table SP03SECT AS(SELECT COURSEID,CSID,FACULTYID,ROOMID from CRSSECTION where TERMID IN(SELECT TERMID from TERM where TERMDESC=203));
+
+Table created.
+
+SQL> SELECT * from SP03SECT;
+
+  COURSEID       CSID  FACULTYID     ROOMID                                     
+---------- ---------- ---------- ----------                                     
+         1         12         11         15                                     
+         2         12         12         15                                     
+         3         12         13         15                                     
+         4         12         14         15                                     
+         5         12         15         15                                     
+
+SQL> UPDATE SP03SECT SET FACULTYID=201 where COURSEID=1;
+
+1 row updated.
+
+SQL> UPDATE SP03SECT SET FACULTYID=202 where COURSEID=2;
+
+1 row updated.
+
+SQL> UPDATE SP03SECT SET FACULTYID=203 where COURSEID=3;
+
+1 row updated.
+
+SQL> UPDATE SP03SECT SET FACULTYID=204 where COURSEID=4;
+
+1 row updated.
+
+SQL> UPDATE SP03SECT SET FACULTYID=205 where COURSEID=5;
+
+1 row updated.
+
+SQL> DELETE from SP03SECT where FACULTYID=(SELECT FACULTYID from FACULTY where NAME='RAJ')
+  2  DELETE from SP03SECT where FACULTYID=(SELECT FACULTYID from FACULTY where NAME='RAJ');
+DELETE from SP03SECT where FACULTYID=(SELECT FACULTYID from FACULTY where NAME='RAJ')
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> DELETE from SP03SECT where FACULTYID=(SELECT FACULTYID from FACULTY where NAME='RAJ');
+
+1 row deleted.
+
+SQL> SELECT * from FACULTY where not exists(SELECT * from SP03SECT where SP03SECT.FACULTYID=FACULTY.FACUTYID);
+SELECT * from FACULTY where not exists(SELECT * from SP03SECT where SP03SECT.FACULTYID=FACULTY.FACUTYID)
+                                                                                       *
+ERROR at line 1:
+ORA-00904: "FACULTY"."FACUTYID": invalid identifier 
+
+
+SQL> SELECT * from FACULTY where not exists(SELECT * from SP03SECT where SP03SECT.FACULTYID=FACULTY.FACULTYID);
+
+ FACULTYID NAME       ROOMID PHONE          DEPTID                              
+---------- ------ ---------- ---------- ----------                              
+       202 RAJ           106 8987896324        302                              
+
+SQL> spool off;

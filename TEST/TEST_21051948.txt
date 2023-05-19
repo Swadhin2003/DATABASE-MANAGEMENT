@@ -1,0 +1,479 @@
+SQL> conn
+Enter user-name: TEST_21051948
+Connected.
+SQL> CREATE table EMPLOYEE (EMPNO NUMBER(4,0) CONSTRAINT C01 PRIMARY KEY, EMPNAME VARCHAR2(10) CONSTRAINT C02 NOT NULL, JOB VARCHAR2(9) CONSTRAINT C03 NOT NULL, MGR NUMBER(4,0), HIREDATE DATE, SAL NUMBER(7,2), COMM NUMBER(7,2), DEPTNO NUMBER(2,0));
+
+Table created.
+
+SQL> DROP TABLE EMPLOYEE;
+
+Table dropped.
+
+SQL> CREATE table EMPLOYEE_1948 (EMPNO NUMBER(4,0) CONSTRAINT C01 PRIMARY KEY, EMPNAME VARCHAR2(10) CONSTRAINT C02 NOT NULL, JOB VARCHAR2(9) CONSTRAINT C03 NOT NULL, MGR NUMBER(4,0), HIREDATE DATE, SAL NUMBER(7,2), COMM NUMBER(7,2), DEPTNO NUMBER(2,0));
+
+Table created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7369, 'SMITH', 'CLERK', 7902, '17-DEC-80', 800, NULL, 20);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7499, 'ALLEN', 'SALESMAN', 7698, '20-FEB-81', 1600, 300, 30);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7521, 'WARD', 'SALESMAN', 7698, '22-FEB-81', 1250, 500, 30);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7566, 'JONES', 'MANAGER', 7839, '02-APR-81', 2975, NULL, 20);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7654, 'MARTIN', 'SALESMAN', 7698, '28-SEP-81', 1250, 1400, 30);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7698, 'BLAKE', 'MANAGER', 7839, '01-MAY-81', 2850, NULL, 30);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7782, 'CLARK', 'MANAGER', 7839, '09-JUN-81', 2450, NULL, 10);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7788, 'SCOTT', 'ANALYST', 7566, '19-APR-87', 3000, NULL, 20);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7839, 'KING', 'PRESIDENT', NULL, '17-NOV-81', 5000, NULL, 10);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7844, 'TURNER', 'SALESMAN', 7698, '08-SEP-81', 1500, 0, 30);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7876, 'ADAMS', 'CLERK', 7788, '23-MAY-87', 1100, NULL, 20);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7900, 'JAMES', 'CLERK', 7698, '03-DEC-81', 950, NULL, 30);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7902, 'FORD', 'ANALYST', 7566, '03-DEC-81', 3000, NULL, 20);
+
+1 row created.
+
+SQL> INSERT into EMPLOYEE_1948 values (7934, 'MILLER', 'CLERK', 7782, '23-JAN-82', 1300, NULL, 10);
+
+1 row created.
+
+SQL> SELECT * FROM EMPLOYEE_1948;
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> CREATE TABLE DEPARTMENT_1948(DEPTNO NUMBER(2,0) CONSTRAINT C04 PRIMARY KEY, DNAME VARCHAR2(20), LOC VARCHAR2(20));
+
+Table created.
+
+SQL> INSERT into DEPARTMENT_1948 values (10, 'ACCOUNTING', 'NEW YORK');
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT_1948 values (20, 'RESEARCH', 'DALLAS');
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT_1948 values (30, 'SALES', 'CHICAGO');
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT_1948 values (40, 'OPERATIONS', 'BOSTON');
+
+1 row created.
+
+SQL> SELECT * FROM DEPARTMENT_1948;
+
+    DEPTNO DNAME                LOC                                             
+---------- -------------------- --------------------                            
+        10 ACCOUNTING           NEW YORK                                        
+        20 RESEARCH             DALLAS                                          
+        30 SALES                CHICAGO                                         
+        40 OPERATIONS           BOSTON                                          
+
+SQL> SELECT * FROM EMPLOYEE_1948 NATURAL JOIN DEPARTMENT_1948 WHERE LOC NOT IN('BOSTON');
+
+    DEPTNO      EMPNO EMPNAME    JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME                LOC                                             
+---------- -------------------- --------------------                            
+        20       7369 SMITH      CLERK           7902 17-DEC-80        800      
+           RESEARCH             DALLAS                                          
+                                                                                
+        30       7499 ALLEN      SALESMAN        7698 20-FEB-81       1600      
+       300 SALES                CHICAGO                                         
+                                                                                
+        30       7521 WARD       SALESMAN        7698 22-FEB-81       1250      
+       500 SALES                CHICAGO                                         
+                                                                                
+
+    DEPTNO      EMPNO EMPNAME    JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME                LOC                                             
+---------- -------------------- --------------------                            
+        20       7566 JONES      MANAGER         7839 02-APR-81       2975      
+           RESEARCH             DALLAS                                          
+                                                                                
+        30       7654 MARTIN     SALESMAN        7698 28-SEP-81       1250      
+      1400 SALES                CHICAGO                                         
+                                                                                
+        30       7698 BLAKE      MANAGER         7839 01-MAY-81       2850      
+           SALES                CHICAGO                                         
+                                                                                
+
+    DEPTNO      EMPNO EMPNAME    JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME                LOC                                             
+---------- -------------------- --------------------                            
+        10       7782 CLARK      MANAGER         7839 09-JUN-81       2450      
+           ACCOUNTING           NEW YORK                                        
+                                                                                
+        20       7788 SCOTT      ANALYST         7566 19-APR-87       3000      
+           RESEARCH             DALLAS                                          
+                                                                                
+        10       7839 KING       PRESIDENT            17-NOV-81       5000      
+           ACCOUNTING           NEW YORK                                        
+                                                                                
+
+    DEPTNO      EMPNO EMPNAME    JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME                LOC                                             
+---------- -------------------- --------------------                            
+        30       7844 TURNER     SALESMAN        7698 08-SEP-81       1500      
+         0 SALES                CHICAGO                                         
+                                                                                
+        20       7876 ADAMS      CLERK           7788 23-MAY-87       1100      
+           RESEARCH             DALLAS                                          
+                                                                                
+        30       7900 JAMES      CLERK           7698 03-DEC-81        950      
+           SALES                CHICAGO                                         
+                                                                                
+
+    DEPTNO      EMPNO EMPNAME    JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME                LOC                                             
+---------- -------------------- --------------------                            
+        20       7902 FORD       ANALYST         7566 03-DEC-81       3000      
+           RESEARCH             DALLAS                                          
+                                                                                
+        10       7934 MILLER     CLERK           7782 23-JAN-82       1300      
+           ACCOUNTING           NEW YORK                                        
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT * FROM EMPLOYEE_1948 WHERE SAL>(SELECT AVG(SAL) FROM EMPLOYEE_1948;
+SELECT * FROM EMPLOYEE_1948 WHERE SAL>(SELECT AVG(SAL) FROM EMPLOYEE_1948
+                                       *
+ERROR at line 1:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> SELECT * FROM EMPLOYEE_1948 WHERE SAL>(SELECT AVG(SAL) FROM EMPLOYEE_1948);
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT * FROM EMPLOYEE_1948 WHERE HIREDATE<('01-JAN-81');
+
+     EMPNO EMPNAME    JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+
+SQL> SELECT ENAME, SAL+1000 AS NEW_SAL FROM EMPLOYEE_1948;
+SELECT ENAME, SAL+1000 AS NEW_SAL FROM EMPLOYEE_1948
+       *
+ERROR at line 1:
+ORA-00904: "ENAME": invalid identifier 
+
+
+SQL> SELECT EMPNAME, SAL+1000 AS NEW_SAL FROM EMPLOYEE_1948;
+
+EMPNAME       NEW_SAL                                                           
+---------- ----------                                                           
+SMITH            1800                                                           
+ALLEN            2600                                                           
+WARD             2250                                                           
+JONES            3975                                                           
+MARTIN           2250                                                           
+BLAKE            3850                                                           
+CLARK            3450                                                           
+SCOTT            4000                                                           
+KING             6000                                                           
+TURNER           2500                                                           
+ADAMS            2100                                                           
+
+EMPNAME       NEW_SAL                                                           
+---------- ----------                                                           
+JAMES            1950                                                           
+FORD             4000                                                           
+MILLER           2300                                                           
+
+14 rows selected.
+
+SQL> SELECT EMPNAME FROM EMPLOYEE_1948 WHERE JOB IN('CLERK' OR 'ANALYST') ORDER BY SAL DESC;
+SELECT EMPNAME FROM EMPLOYEE_1948 WHERE JOB IN('CLERK' OR 'ANALYST') ORDER BY SAL DESC
+                                                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT EMPNAME FROM EMPLOYEE_1948 WHERE JOB IN('CLERK','ANALYST') ORDER BY SAL DESC;
+
+EMPNAME                                                                         
+----------                                                                      
+FORD                                                                            
+SCOTT                                                                           
+MILLER                                                                          
+ADAMS                                                                           
+JAMES                                                                           
+SMITH                                                                           
+
+6 rows selected.
+
+SQL> SELECT EMPNAME,HIREDATE FROM EMPLOYEE_1948 WHERE HIREDATE IN('01-JAN-12','01-JAN-13');
+
+no rows selected
+
+SQL> SELECT DISTINCT(JOB), SAL FROM EMPLOYEE_1948 WHERE SAL BETWEEN 2000 AND 5000;
+
+JOB              SAL                                                            
+--------- ----------                                                            
+MANAGER         2450                                                            
+PRESIDENT       5000                                                            
+ANALYST         3000                                                            
+MANAGER         2850                                                            
+MANAGER         2975                                                            
+
+SQL> SELECT E.EMPNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE E.DEPTNO=D.DEPTNO AND E.DEPTNO IN(10,30) GROUP BY E.NAME;
+SELECT E.EMPNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE E.DEPTNO=D.DEPTNO AND E.DEPTNO IN(10,30) GROUP BY E.NAME
+                                                                                                                 *
+ERROR at line 1:
+ORA-00904: "E"."NAME": invalid identifier 
+
+
+SQL> SELECT E.EMPNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE E.DEPTNO=D.DEPTNO AND E.DEPTNO IN(10,30) GROUP BY E.EMPNAME;
+
+EMPNAME                                                                         
+----------                                                                      
+ALLEN                                                                           
+CLARK                                                                           
+MILLER                                                                          
+WARD                                                                            
+MARTIN                                                                          
+TURNER                                                                          
+BLAKE                                                                           
+KING                                                                            
+JAMES                                                                           
+
+9 rows selected.
+
+SQL> SELECT EMPNAME, JOB, SAL FROM EMPLOYEE_1948 WHERE JOB IN('CLERK','ANALYST') AND SAL NOT IN(1250,3000,5000);
+
+EMPNAME    JOB              SAL                                                 
+---------- --------- ----------                                                 
+SMITH      CLERK            800                                                 
+ADAMS      CLERK           1100                                                 
+JAMES      CLERK            950                                                 
+MILLER     CLERK           1300                                                 
+
+SQL> SELECT DISTINCT(E.JOB) FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE E.DEPTNO=D.DEPTNO AND E.DEPTNO=30;
+
+JOB                                                                             
+---------                                                                       
+SALESMAN                                                                        
+CLERK                                                                           
+MANAGER                                                                         
+
+SQL> SELECT E.EMPNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE E.DEPTNO=D.DEPTNO AND D.DNAME IN ('SALES','OPERATIONS');
+
+EMPNAME                                                                         
+----------                                                                      
+ALLEN                                                                           
+WARD                                                                            
+MARTIN                                                                          
+BLAKE                                                                           
+TURNER                                                                          
+JAMES                                                                           
+
+6 rows selected.
+
+SQL> SELECT E.EMPNAME FROM EMPLOYEE_1948 E,DNAME FROM DEPARTMENT_1948 D WHERE MGR=7839;
+SELECT E.EMPNAME FROM EMPLOYEE_1948 E,DNAME FROM DEPARTMENT_1948 D WHERE MGR=7839
+                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT AVG(SAL) FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE E.DEPTNO=D.DEPTNO;
+
+  AVG(SAL)                                                                      
+----------                                                                      
+2073.21429                                                                      
+
+SQL> SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.DEPTNO=D.DEPTNO AND E.MGR=7839;
+
+EMPNAME    DNAME                                                                
+---------- --------------------                                                 
+CLARK      ACCOUNTING                                                           
+JONES      RESEARCH                                                             
+BLAKE      SALES                                                                
+
+SQL> SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.HIREDATE IN('01-JAN-81','01-SEP-81');
+
+no rows selected
+
+SQL> SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.HIREDATE BETWEEN('01-JAN-81','01-SEP-81');
+SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.HIREDATE BETWEEN('01-JAN-81','01-SEP-81')
+                                                                                                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.HIREDATE BETWEEN('01-JAN-81' AND '01-SEP-81');
+SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.HIREDATE BETWEEN('01-JAN-81' AND '01-SEP-81')
+                                                                                                        *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT E.EMPNAME, D.DNAME FROM EMPLOYEE_1948 E, DEPARTMENT_1948 D WHERE  E.HIREDATE BETWEEN '01-JAN-81' AND '01-SEP-81';
+
+EMPNAME    DNAME                                                                
+---------- --------------------                                                 
+ALLEN      ACCOUNTING                                                           
+ALLEN      RESEARCH                                                             
+ALLEN      SALES                                                                
+ALLEN      OPERATIONS                                                           
+WARD       ACCOUNTING                                                           
+WARD       RESEARCH                                                             
+WARD       SALES                                                                
+WARD       OPERATIONS                                                           
+JONES      ACCOUNTING                                                           
+JONES      RESEARCH                                                             
+JONES      SALES                                                                
+
+EMPNAME    DNAME                                                                
+---------- --------------------                                                 
+JONES      OPERATIONS                                                           
+BLAKE      ACCOUNTING                                                           
+BLAKE      RESEARCH                                                             
+BLAKE      SALES                                                                
+BLAKE      OPERATIONS                                                           
+CLARK      ACCOUNTING                                                           
+CLARK      RESEARCH                                                             
+CLARK      SALES                                                                
+CLARK      OPERATIONS                                                           
+
+20 rows selected.
+
+SQL> spool off;

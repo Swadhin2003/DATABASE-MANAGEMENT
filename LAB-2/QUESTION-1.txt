@@ -1,0 +1,374 @@
+SQL> CREATE table STUDENT(StudentId NUMBER(3) CONSTRAINT C11 PRIMARY KEY, Last VARCHAR(6), First VARCHAR(8) CONSTRAINT C12 NOT NULL, Street VARCHAR(14), City VARCHAR(8), State VARCHAR(8), Zip VARCHAR(6) CONSTRAINT C13 NOT NULL, STARTTerm VARCHAR(10), BirthDate DATE, FacultyId NUMBER(3) CONSTRAINT C14 UNIQUE, MajorId NUMBER(3) CONSTRAINT C15 UNIQUE, Phone VARCHAR(10) CONSTRAINT C16 UNIQUE);
+
+Table created.
+
+SQL> INSERT into STUDENT values (101, 'NAGAR', 'ASHU', 'AG SQUARE', 'BBSR', 'ODISHA', '751003', 'START1', '20 MARCH 2003', 201, 301, '7978564789');
+
+1 row created.
+
+SQL> INSERT into STUDENT values (102, 'DAS', 'RAJ', 'BOSE COLONY', 'ANGUL', 'ODISHA', '756001', 'START2', '21 MARCH 2002', 202, 302, '8987896324');
+
+1 row created.
+
+SQL> INSERT into STUDENT values (103, 'ROY', 'PIYA', 'IRC', 'BBSR', 'ODISHA', '751020', 'START3', '08 SEPTEMBER 2002', 203, 303, '6754367954');
+
+1 row created.
+
+SQL> INSERT into STUDENT values (104, 'ALI', 'JIYA', 'CRP', 'BBSR', 'ODISHA', '751017', 'START4', '07 FEBRUARY 2002', 204, 304, '7658769934');
+
+1 row created.
+
+SQL> INSERT into STUDENT values (105, 'MURTHY', 'RANGA', 'PATEL MARG', 'PURI', 'ODISHA', '752001', 'START5', '14 NOVEMBER 2002', 205, 305, '8798723895');
+
+1 row created.
+
+SQL> SELECT * from STUDENT;
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM
+---------- ------ -------- -------------- -------- -------- ------ ----------
+BIRTHDATE  FACULTYID    MAJORID PHONE
+--------- ---------- ---------- ----------
+       101 NAGAR  ASHU     AG SQUARE      BBSR     ODISHA   751003 START1
+20-MAR-03        201        301 7978564789
+
+       102 DAS    RAJ      BOSE COLONY    ANGUL    ODISHA   756001 START2
+21-MAR-02        202        302 8987896324
+
+       103 ROY    PIYA     IRC            BBSR     ODISHA   751020 START3
+08-SEP-02        203        303 6754367954
+
+
+ STUDENTID LAST   FIRST    STREET         CITY     STATE    ZIP    STARTTERM
+---------- ------ -------- -------------- -------- -------- ------ ----------
+BIRTHDATE  FACULTYID    MAJORID PHONE
+--------- ---------- ---------- ----------
+       104 ALI    JIYA     CRP            BBSR     ODISHA   751017 START4
+07-FEB-02        204        304 7658769934
+
+       105 MURTHY RANGA    PATEL MARG     PURI     ODISHA   752001 START5
+14-NOV-02        205        305 8798723895                                   
+                                                                                
+SQL> CREATE table FACULTY (FacultyId NUMBER(3) CONSTRAINT C17 PRIMARY KEY, Name VARCHAR(6), RoomId NUMBER(3) CONSTRAINT C18 UNIQUE, Phone VARCHAR(10) CONSTRAINT C19 UNIQUE, DeptId NUMBER(3) CONSTRAINT C20 NOT NULL);
+
+Table created.
+
+SQL> INSERT into FACULTY values (201, 'ASHU', 101, '7978564789', 301);
+
+1 row created.
+
+SQL> INSERT into FACULTY values (202, 'RAJ', 102, '8987896324', 302);
+
+1 row created.
+
+SQL> INSERT into FACULTY values (203, 'PIYA', 103, '6754367954', 303);
+
+1 row created.
+
+SQL> INSERT into FACULTY values (204, 'JIYA', 104, '7658769934', 304);
+
+1 row created.
+
+SQL> INSERT into FACULTY values (205, 'RANGA', 105, '8798723895', 305);
+
+1 row created.
+
+SQL> SELECT * from FACULTY;
+
+ FACULTYID NAME       ROOMID PHONE          DEPTID
+---------- ------ ---------- ---------- ----------
+       201 ASHU          101 7978564789        301
+       202 RAJ           102 8987896324        302
+       203 PIYA          103 6754367954        303
+       204 JIYA          104 7658769934        304
+       205 RANGA         105 8798723895        305                              
+
+SQL> CREATE table COURSE (CourseId NUMBER(3) CONSTRAINT C21 PRIMARY KEY, Title VARCHAR(5) CONSTRAINT C22 NOT NULL, Credits NUMBER(4), PreReq VARCHAR(15));
+
+Table created.
+
+SQL> INSERT into COURSE values (101, 'DBMS', 4, 'DATA BASE');
+
+1 row created.
+
+SQL> INSERT into COURSE values (102, 'OS', 3, 'SYSTEM');
+
+1 row created.
+
+SQL> INSERT into COURSE values (103, 'WT', 3, 'TECHNOLOGY');
+
+1 row created.
+
+SQL> INSERT into COURSE values (104, 'AFL', 4, 'LANGUAGE');
+
+1 row created.
+
+SQL> INSERT into COURSE values (105, 'COA', 4, 'ARCHITECTURE');
+
+1 row created.
+
+SQL> SELECT * from COURSE;
+
+  COURSEID TITLE    CREDITS PREREQ                                              
+---------- ----- ---------- ---------------                                     
+       101 DBMS           4 DATA BASE                                           
+       102 OS             3 SYSTEM                                              
+       103 WT             3 TECHNOLOGY                                          
+       104 AFL            4 LANGUAGE                                            
+       105 COA            4 ARCHITECTURE                                        
+
+SQL> CREATE table CRSSECTION (CsId NUMBER(3), CourseId NUMBER(3), Section VARCHAR(8), TermId NUMBER(3), FacultyId NUMBER(3), Day VARCHAR(10), STARTTime VARCHAR(10), EndTime VARCHAR(10), RoomId NUMBER(3), MaxCount NUMBER(3));
+
+Table created.
+
+SQL> INSERT into CRSSECTION values (101, 1, 1, 101, 11, 'Monday', '08:00:00', '18:00:00', 15, 35);
+
+1 row created.
+
+SQL> INSERT into CRSSECTION values (102, 2, 2, 102, 12, 'Monday', '08:00:00', '15:00:00', 15, 35);
+
+1 row created.
+
+SQL> INSERT into CRSSECTION values (103, 3, 3, 103, 13, 'Monday', '11:00:00', '18:00:00', 15, 35);
+
+1 row created.
+
+SQL> INSERT into CRSSECTION values (104, 4, 4, 104, 14, 'Monday', '08:00:00', '11:00:00', 15, 35);
+
+1 row created.
+
+SQL> INSERT into CRSSECTION values (105, 5, 5, 105, 15, 'Monday', '15:00:00', '18:00:00', 15, 35);
+
+1 row created.
+
+SQL> SELECT * from CRSSECTION;
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME
+---------- ---------- -------- ---------- ---------- ---------- ----------
+ENDTIME        ROOMID   MAXCOUNT
+---------- ---------- ----------
+       101          1 1               101         11 Monday     08:00:00
+18:00:00           15         35
+
+       102          2 2               102         12 Monday     08:00:00
+15:00:00           15         35
+
+       103          3 3               103         13 Monday     11:00:00
+18:00:00           15         35
+
+
+      CSID   COURSEID SECTION      TERMID  FACULTYID DAY        STARTTIME
+---------- ---------- -------- ---------- ---------- ---------- ----------
+ENDTIME        ROOMID   MAXCOUNT
+---------- ---------- ----------
+       104          4 4               104         14 Monday     08:00:00
+11:00:00           15         35
+
+       105          5 5               105         15 Monday     15:00:00
+18:00:00           15         35                                                
+                                                                                
+
+SQL> CREATE table TERM(TermId NUMBER(3) CONSTRAINT C23 PRIMARY KEY, TermDesc NUMBER(3), STARTDate VARCHAR(10), EndDate VARCHAR(10));
+
+Table created.
+
+SQL> INSERT into TERM values (101, 201, '09/01/2023', '23/03/2023');
+
+1 row created.
+
+SQL> INSERT into TERM values (102, 202, '10/01/2023', '24/03/2023');
+
+1 row created.
+
+SQL> INSERT into TERM values (50, 203, '11/01/2023', '25/03/2023');
+
+1 row created.
+
+SQL> INSERT into TERM values (104, 204, '12/01/2023', '26/03/2023');
+
+1 row created.
+
+SQL> INSERT into TERM values (105, 205, '13/01/2023', '27/03/2023');
+
+1 row created.
+
+SQL> SELECT * from TERM;
+
+    TERMID   TERMDESC STARTDATE  ENDDATE                                        
+---------- ---------- ---------- ----------                                     
+       101        201 09/01/2023 23/03/2023                                     
+       102        202 10/01/2023 24/03/2023                                     
+        50        203 11/01/2023 25/03/2023                                     
+       104        204 12/01/2023 26/03/2023                                     
+       105        205 13/01/2023 27/03/2023                                     
+
+SQL> CREATE table ROOM (RoomType VARCHAR(10) CONSTRAINT C24 PRIMARY KEY, RoomDesc VARCHAR(10));
+
+Table created.
+
+SQL> INSERT into ROOM values ('Blue', '101');
+
+1 row created.
+
+SQL> INSERT into ROOM values ('Red', '201');
+
+1 row created.
+
+SQL> INSERT into ROOM values ('Green', '301');
+
+1 row created.
+
+SQL> INSERT into ROOM values ('Yellow', '401');
+
+1 row created.
+
+SQL> INSERT into ROOM values ('Black', '501');
+
+1 row created.
+
+SQL> SELECT * from ROOM;
+
+ROOMTYPE   ROOMDESC                                                             
+---------- ----------                                                           
+Blue       101                                                                  
+Red        201                                                                  
+Green      301                                                                  
+Yellow     401                                                                  
+Black      501                                                                  
+
+SQL> CREATE table REGISTRATION(StudentId NUMBER(3) CONSTRAINT C25 PRIMARY KEY, CsId NUMBER(3) CONSTRAINT C26 UNIQUE, Midterm NUMBER(3), Final NUMBER(3), RegStatus VARCHAR(10));
+
+Table created.
+
+SQL> INSERT into REGISTRATION values (101, 101, 15, 98, 'PASS');
+
+1 row created.
+
+SQL> INSERT into REGISTRATION values (102, 102, 17, 89, 'PASS');
+
+1 row created.
+
+SQL> INSERT into REGISTRATION values (103, 103, 18, 86, 'PASS');
+
+1 row created.
+
+SQL> INSERT into REGISTRATION values (104, 104, 19, 94, 'PASS');
+
+1 row created.
+
+SQL> INSERT into REGISTRATION values (105, 105, 20, 95, 'PASS');
+
+1 row created.
+
+SQL> SELECT * from REGISTRATION;
+
+ STUDENTID       CSID    MIDTERM      FINAL REGSTATUS
+---------- ---------- ---------- ---------- ----------
+       101        101         15         98 PASS
+       102        102         17         89 PASS
+       103        103         18         86 PASS
+       104        104         19         94 PASS
+       105        105         20         95 PASS                                
+
+SQL> CREATE table DEPARTMENT(DeptId NUMBER(3) CONSTRAINT C27 PRIMARY KEY, DeptName VARCHAR(5), FacultyId NUMBER(3));
+
+Table created.
+ 
+SQL> INSERT into DEPARTMENT values (101, 'DBMS', 201);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (102, 'OS', 202);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (103, 'WT', 203);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (104, 'AFL', 204);
+
+1 row created.
+
+SQL> INSERT into DEPARTMENT values (105, 'COA', 205);
+
+1 row created.
+
+SQL> SELECT * from DEPARTMENT;
+
+    DEPTID DEPTNAME  FACULTYID                                                     
+---------- -------- ----------                                                     
+       101 DBMS         201                                                     
+       102 OS           202                                                     
+       103 WT           203                                                     
+       104 AFL          204                                                     
+       105 COA          205                                                     
+
+SQL> CREATE table MAJOR(MajorId NUMBER(3) CONSTRAINT C28 PRIMARY KEY, MajorDesc NUMBER(5));
+
+Table created.
+
+SQL> INSERT into MAJOR values (301, 11);
+
+1 row created.
+
+SQL> INSERT into MAJOR values (302, 12);
+
+1 row created.
+
+SQL> INSERT into MAJOR values (303, 13);
+
+1 row created.
+
+SQL> INSERT into MAJOR values (304, 14);
+
+1 row created.
+
+SQL> INSERT into MAJOR values (305, 15);
+
+1 row created.
+
+SQL> SELECT * from MAJOR;
+
+   MAJORID  MAJORDESC
+---------- ----------
+       301         11
+       302         12
+       303         13
+       304         14
+       305         15                                                           
+
+SQL> CREATE table LOCATION (RoomId NUMBER(3) CONSTRAINT C29 PRIMARY KEY, Building VARCHAR(10), RoomNo NUMBER(3), Capacity NUMBER(3), RoomType VARCHAR(15));
+
+Table created.
+
+SQL> INSERT into LOCATION values (101, 'B-1', 201, 1, 'Blue');
+
+1 row created.
+
+SQL> INSERT into LOCATION values (102, 'B-2', 202, 2, 'Red');
+
+1 row created.
+
+SQL> INSERT into LOCATION values (103, 'B-2', 203, 2, 'Green');
+
+1 row created.
+
+SQL> INSERT into LOCATION values (104, 'B-1', 204, 1, 'Yellow');
+
+1 row created.
+
+SQL> INSERT into LOCATION values (105, 'B-2', 205, 2, 'Black');
+
+1 row created.
+
+SQL> SELECT * from LOCATION;
+
+    ROOMID BUILDING       ROOMNO   CAPACITY ROOMTYPE
+---------- ---------- ---------- ---------- ---------------
+       101 B-1               201          1 Blue
+       102 B-2               202          2 Red
+       103 B-2               203          2 Green
+       104 B-1               204          1 Yellow
+       105 B-2               205          2 Black                          
+
+SQL> spool off;

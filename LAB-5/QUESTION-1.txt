@@ -1,0 +1,58 @@
+SQL> SELECT FNAME||' '||LNAME AS EMPLOYEE_NAME,DEPTNAME from EMPLOYEE, DEPT where EMPLOYEE.EMPLOYEEID = DEPT.EMPLOYEEID;
+
+EMPLOYEE_NAME   DEPTNAME                                                        
+--------------- ----------                                                      
+ASHU NAGAR      HR                                                              
+RAJ DAS         RD                                                              
+PIYA ROY        WELFARE                                                         
+JIYA ALI        INFO                                                            
+RANGA MURTHY    DEALS                                                           
+
+SQL> SELECT SUPERVISOR from EMPLOYEE where EMPLOYEEID = 104;
+
+SUPERVISOR                                                                      
+----------                                                                      
+CDE                                                                             
+ 
+SQL> SELECT LNAME||', '||FNAME AS EMPLOYEE_NAME, SALARY, SUPERVISOR, SALARY from EMPLOYEE;
+
+EMPLOYEE_NAME        SALARY SUPERVISOR     SALARY                               
+---------------- ---------- ---------- ----------                               
+NAGAR, ASHU          450000 ABC            450000                               
+DAS, RAJ             350000 XYZ            350000                               
+ROY, PIYA            275000 PRT            275000                               
+ALI, JIYA            475000 CDE            475000                               
+MURTHY, RANGA        950000 JKL            950000                               
+
+SQL> 4 TO BE DONE;
+
+SQL> 5 TO BE DONE;
+
+SQL> SELECT FNAME from EMPLOYEE NATURAL JOIN DEPT where DEPTNAME='SALES';
+
+FNAME
+--------
+ASHU                                  
+
+SQL> SELECT FNAME, RELATION from EMPLOYEE E LEFT JOIN DEPENDENT D on E.EMPLOYEEID = D.EMPLOYEEID;
+
+FNAME    RELATION                                                               
+-------- ----------                                                             
+ASHU     STAFF                                                                  
+RAJ      DESIGNER                                                               
+PIYA     STAFF                                                                  
+JIYA     MANAGER                                                                
+RANGA    WORKER                                                                 
+
+SQL> SELECT FNAME, CEIL((SYSDATE-HIREDATE)/365)NO_OF_YEARS, DEPTNAME from EMPLOYEE NATURAL JOIN DEPT ORDER BY NO_OF_YEARS DESC;
+
+FNAME    NO_OF_YEARS DEPTNAME
+-------- ----------- ----------
+JIYA              24 INFO
+RAJ               19 RD
+PIYA              18 WELFARE
+ASHU              17 HR
+RANGA             13 DEALS                                                            
+
+SQL> 9 TO BE DONE;
+

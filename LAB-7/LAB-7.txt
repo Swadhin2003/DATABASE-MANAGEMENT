@@ -1,0 +1,389 @@
+SQL> SELECT 2*5 from DUAL;
+
+       2*5
+----------
+        10
+
+SQL> SELECT SYSDATE from DUAL;
+
+SYSDATE
+---------
+21-FEB-23
+
+SQL> SELECT COUNT(FACULTYID) from FACULTY;
+
+COUNT(FACULTYID)
+----------------
+               5
+
+SQL> SELECT COUNT(DISTINCT FACULTYID) from FACULTY;
+
+COUNT(DISTINCTFACULTYID)
+------------------------
+                       5
+
+SQL> SELECT COUNT(*) from FACULTY;
+
+  COUNT(*)
+----------
+         5
+
+SQL> SELECT SUM(FINAL) from REGISTRATION;
+
+SUM(FINAL)
+----------
+       462
+
+SQL> SELECT AVG(FINAL) from REGISTRATION;
+
+AVG(FINAL)
+----------
+      92.4
+
+SQL> SELECT MAX(FINAL) from REGISTRATION;
+
+MAX(FINAL)
+----------
+        98
+
+SQL> SELECT MIN(FINAL) from REGISTRATION;
+
+MIN(FINAL)
+----------
+        86
+
+SQL> SELECT ADD_MONTHS(STARTDATE,4) FROM TERM where TERMID=101;
+SELECT ADD_MONTHS(STARTDATE,4) FROM TERM where TERMID=101
+                  *
+ERROR at line 1:
+ORA-01843: not a valid month
+
+
+SQL> SELECT ADD_MONTH(STARTDATE,4) FROM TERM where TERMID=101;
+SELECT ADD_MONTH(STARTDATE,4) FROM TERM where TERMID=101
+       *
+ERROR at line 1:
+ORA-00904: "ADD_MONTH": invalid identifier
+
+
+SQL> SELECT ADD_MONTHS (STARTDATE,4) FROM TERM where TERMID=101;
+SELECT ADD_MONTHS (STARTDATE,4) FROM TERM where TERMID=101
+                   *
+ERROR at line 1:
+ORA-01843: not a valid month
+
+
+SQL> SELECT ADD_MONTHS(StartDate,4) FROM TERM where TERMID=101;
+SELECT ADD_MONTHS(StartDate,4) FROM TERM where TERMID=101
+                  *
+ERROR at line 1:
+ORA-01843: not a valid month
+
+
+SQL> SELECT LAST_DAY(SYSDATE) from DUAL;
+
+LAST_DAY(
+---------
+28-FEB-23
+
+SQL> SELECT LAST_DAY (SYSDATE) from DUAL;
+
+LAST_DAY(
+---------
+28-FEB-23
+
+SQL> SELECT MONTHS_BETWEEN(SYSDATE,'23-JAN-21') from DUAL;
+
+MONTHS_BETWEEN(SYSDATE,'23-JAN-21')
+-----------------------------------
+                          24.948846
+
+SQL> SELECT NEXT_DAY(SYSDATE,'TUESDAY') from DUAL;
+
+NEXT_DAY(
+---------
+28-FEB-23
+
+SQL> SELECT EXTRACT(MONTH from SYSDATE) from DUAL;
+
+EXTRACT(MONTHFROMSYSDATE)
+-------------------------
+                        2
+
+SQL> SELECT EXTRACT(YEAR from SYSDATE) from DUAL;
+
+EXTRACT(YEARFROMSYSDATE)
+------------------------
+                    2023
+
+SQL> SELECT ABS(5),ABS(-100) from DAUL;
+SELECT ABS(5),ABS(-100) from DAUL
+                             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT ABS(5),ABS(-100) from DUAL;
+
+    ABS(5)  ABS(-100)
+---------- ----------
+         5        100
+
+SQL> SELECT CEIL(-5,2),CEIL(5.7) from DUAL;
+SELECT CEIL(-5,2),CEIL(5.7) from DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> SELECT CEIL(-5,2), CEIL(5.7) from DUAL;
+SELECT CEIL(-5,2), CEIL(5.7) from DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> SELECT CEIL(-5.2), CEIL(5.7) from DUAL;
+
+CEIL(-5.2)  CEIL(5.7)
+---------- ----------
+        -5          6
+
+SQL> SELECT FLOOR(-5.2), FLOOR(5.7) from DUAL;
+
+FLOOR(-5.2) FLOOR(5.7)
+----------- ----------
+         -6          5
+
+SQL> SELECT EXP(5) from DUAL;
+
+    EXP(5)
+----------
+148.413159
+
+SQL> SELECT LN(5) from DUAL;
+
+     LN(5)
+----------
+1.60943791
+
+SQL> SELECT LOG(4,10) from DUAL;
+
+ LOG(4,10)
+----------
+1.66096405
+
+SQL> SELECT LOG(4,2) from DUAL;
+
+  LOG(4,2)
+----------
+        .5
+
+SQL> SELECT LOG(2,4) from DUAL;
+
+  LOG(2,4)
+----------
+         2
+
+SQL> SELECT MOD(15,4) from DUAL;
+
+ MOD(15,4)
+----------
+         3
+
+SQL> SELECT POWER(4,3) from DUAL;
+
+POWER(4,3)
+----------
+        64
+
+SQL> SELECT SQRT(4) from DUAL;
+
+   SQRT(4)
+----------
+         2
+
+SQL> SELECT SQRT(-4) from DUAL;
+SELECT SQRT(-4) from DUAL
+            *
+ERROR at line 1:
+ORA-01428: argument '-4' is out of range
+
+
+SQL> SELECT ROUND(15.19,1), ROUND(15.19) from DUAL;
+
+ROUND(15.19,1) ROUND(15.19)
+-------------- ------------
+          15.2           15
+
+SQL> SELECT ROUND(15.19,2), ROUND(15.19) from DUAL;
+
+ROUND(15.19,2) ROUND(15.19)
+-------------- ------------
+         15.19           15
+
+SQL> SELECT ROUND(15.17,3), ROUND(15.19) from DUAL;
+
+ROUND(15.17,3) ROUND(15.19)
+-------------- ------------
+         15.17           15
+
+SQL> SELECT ROUND(15.17,0.5), ROUND(15.19) from DUAL;
+
+ROUND(15.17,0.5) ROUND(15.19)
+---------------- ------------
+              15           15
+
+SQL> SELECT TRUNC(15.19,1) from DUAL;
+
+TRUNC(15.19,1)
+--------------
+          15.1
+
+SQL> SELECT SIGN(-1) from DUAL;
+
+  SIGN(-1)
+----------
+        -1
+
+SQL> SELECT SIGN(1) from DUAL;
+
+   SIGN(1)
+----------
+         1
+
+SQL> SELECT SIN(60), SIN(1.047167) from DUAL;
+
+   SIN(60) SIN(1.047167)
+---------- -------------
+-.30481062    .866010128
+
+SQL> SELECT CHR(60) from DUAL;
+
+C
+-
+<
+
+SQL> SELECT CHR(70) from DUAL;
+
+C
+-
+F
+
+SQL> SELECT CONCAT('SWADHIN','DALAI'), 'SWADHIN'||'DALAI' from DUAL;
+
+CONCAT('SWAD 'SWADHIN'||'
+------------ ------------
+SWADHINDALAI SWADHINDALAI
+
+SQL> SELECT CONCAT('SWADHIN ','DALAI'), 'SWADHIN '||'DALAI' from DUAL;
+
+CONCAT('SWADH 'SWADHIN'||'D
+------------- -------------
+SWADHIN DALAI SWADHIN DALAI
+
+SQL> SELECT LPAD('ORACLE',10,'*') from DUAL;
+
+LPAD('ORAC
+----------
+****ORACLE
+
+SQL> SELECT LPAD('ORACLE',10,'') from DUAL;
+
+L
+-
+
+
+SQL> SELECT LPAD('ORACLE',10,'$') from DUAL;
+
+LPAD('ORAC
+----------
+$$$$ORACLE
+
+SQL> SELECT RPAD('ORACLE',10,'$') from DUAL;
+
+RPAD('ORAC
+----------
+ORACLE$$$$
+
+SQL> SELECT RPAD('ORACLE',10,'&') from DUAL;
+
+RPAD('ORAC
+----------
+ORACLE&&&&
+
+SQL> SELECT INITCAP('ORACLE') from DUAL;
+
+INITCA
+------
+Oracle
+
+SQL> SELECT LOWER('ORACLE') from DUAL;
+
+LOWER(
+------
+oracle
+
+SQL> SELECT UPPER('ORACLE') from DUAL;
+
+UPPER(
+------
+ORACLE
+
+SQL> SELECT LTRIM(FIRST,'J') from STUDENT;
+
+LTRIM(FI
+--------
+ASHU
+RAJ
+PIYA
+IYA
+RANGA
+
+SQL> SELECT LTRIM('MANAS','M') from DUAL;
+
+LTRI
+----
+ANAS
+
+SQL> SELECT RTRIM('MANAS','AS') from DUAL;
+
+RTR
+---
+MAN
+
+SQL> SELECT RTRIM('MANAS','SA') from DUAL;
+
+RTR
+---
+MAN
+
+SQL> SELECT REPLACE('ORACLE','RAC','V') from DUAL;
+
+REPL
+----
+OVLE
+
+SQL> SELECT SUBSTR('DATABASE',3,2) from DUAL;
+
+SU
+--
+TA
+
+SQL> SELECT SUBSTR('YASH',3,1) from DUAL;
+
+S
+-
+S
+
+SQL> SELECT SUBSTR('SWADHINDALAI',8,5) from DUAL;
+
+SUBST
+-----
+DALAI
+
+SQL> SELECT LENGTH('SWADHINDALAI') from DUAL;
+
+LENGTH('SWADHINDALAI')
+----------------------
+                    12
